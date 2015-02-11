@@ -1,6 +1,9 @@
-$(document).ready(function(){
+ $(function () { 
+ 	
+
 $("#login").click(function(){
 var email = $("#email").val();
+
 var password = $("#password").val();
 // Checking for blank fields.
 if( email =='' || password ==''){
@@ -20,7 +23,6 @@ alert("Please fill all fields...!!!!!!");
         }
     });
 }
-}
-
-);
 });
+ 
+ });

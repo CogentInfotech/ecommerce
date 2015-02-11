@@ -1,10 +1,15 @@
 <%@page contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="ecommerce.*"%>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
- <script type="text/javascript" src="${pageContext.request.contextPath}/js/login.js"></script>
+  
  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/structure.css" />
  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css" />
+ 
+ <script src="${pageContext.request.contextPath}/js/login.js"></script>
+ 
+</script>
   
+
 
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"

@@ -13,7 +13,7 @@ public class LoginController {
 	public ModelAndView welcomePage() {
 
 		ModelAndView model = new ModelAndView();
-		//model.addObject("title", "Welcome to Ecommerce Portal");
+	 
 		model.addObject("message", "Welcome to Ecommerce POC ");
 		model.setViewName("hello");
 		return model;
@@ -27,6 +27,18 @@ public class LoginController {
 		model.addObject("title", "Spring Security Custom Login Form");
 		model.addObject("message", "This is protected page!");
 		model.setViewName("admin");
+
+		return model;
+
+	}
+	
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public ModelAndView reggisterPage() {
+
+		ModelAndView model = new ModelAndView();
+		model.addObject("title", "Ecommerce Register form");
+		
+		model.setViewName("register");
 
 		return model;
 

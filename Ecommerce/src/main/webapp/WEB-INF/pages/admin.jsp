@@ -1,5 +1,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page session="true"%>
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/css/structure.css" />
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css" />
+ 
+ <script src="${pageContext.request.contextPath}/js/login.js"></script>
 <html>
 <body bgcolor="#E6E6FA">
 	<h1> ${title}</h1>
