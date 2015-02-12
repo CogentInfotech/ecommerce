@@ -1,7 +1,8 @@
 <%@page session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/structure.css" />
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/css/welcome.css" />
  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css" />
+ 
  
  <script src="${pageContext.request.contextPath}/js/login.js"></script>
 <html>

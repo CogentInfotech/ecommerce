@@ -89,7 +89,7 @@
 		<form name='loginForm' class="box login" id=loginFormCsrf"
 			action="<c:url value='/j_spring_security_check' />" method='POST'>
 
-			<fieldset class="boxBody">
+			<fieldset class="boxBody" padding-right: 35px;>
 
 				<label>Username</label> <input type="text" name='username'
 					tabindex="1" placeholder="Avoid Special Characters" required>
@@ -98,14 +98,14 @@
 					class="rLink" tabindex="5">Forget your password?</a>
 				</label> <label><a href="#" data-ajax="false" class="rLink" id ="register" tabindex="2">Register</a>
 				</label>
-
-			</fieldset>
-			<footer>
-				<label><input type="checkbox" tabindex="3">Keep me
+               <label><input type="checkbox" tabindex="3">Keep me
 					logged in</label> <input type="submit" class="btnLogin" value="Login"
 					tabindex="4" name="submit"> <input type="hidden"
 					name="${_csrf.parameterName}" id = "csrfToken" value="${_csrf.token}" />
-			</footer>
+			</fieldset>
+			 
+				
+			 
 		</form>
 	</div>
 

@@ -20,6 +20,8 @@
 	 
   <mvc:annotation-driven />
   
+  
+  
    <!-- Add JPA support -->
   <bean id="emf" class=
        "org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

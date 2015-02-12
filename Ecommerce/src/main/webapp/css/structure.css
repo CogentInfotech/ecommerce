@@ -2,10 +2,10 @@
 body{
   background:#eff3f6;
    
-    background-image: url("../img/cogentLogo.png");
+   /* background-image: url("../img/cogentLogo.png");*/
     
 }
-}
+ 
 .box
 {
     background:#fefefe;
@@ -21,6 +21,7 @@ body{
     font:normal 12px/14px Arial, Helvetica, Sans-serif;
     margin:0 auto 30px;
 	overflow:hidden;
+	
 }
 .box.login
 {
@@ -30,6 +31,7 @@ body{
 	left:50%;
 	top:50%;
 	margin:-130px 0 0 -166px;
+	 padding-right: 26px;
 }
 .boxBody
 {

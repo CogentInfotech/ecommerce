@@ -1,4 +1,7 @@
-
+$("#register_submit").click(function(){
+	
+	alert('Hi Am here');
+});
 
 function formValidation()  
 {  
