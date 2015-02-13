@@ -1,12 +1,15 @@
 package com.ecommerce.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ecommerce.dao.RegistrationDAO;
 import com.ecommerce.persistence.EcommerceUserDetails;
 import com.ecommerce.persistence.UserDetailsDAO;
 
@@ -78,9 +81,23 @@ public class LoginController {
 		model.addObject("title", "Ecommerce Register form");
 
 		model.setViewName("register");
-		EcommerceUserDetails details = new EcommerceUserDetails();
-		userDetailsDao.persist(details);
-
+		/*EcommerceUserDetails details = new EcommerceUserDetails();
+		userDetailsDao.persist(details);*/
+		ApplicationContext context = new ClassPathXmlApplicationContext("spring-servlet.xml");
+		
+		EcommerceUserDetails userDetails = new EcommerceUserDetails();
+		
+		userDetails.setCustomerAge(22);
+		userDetails.setCustomerDescription("Hello Ecommerce");
+		userDetails.setCustomerEmail("ecommerce@cogentinfo.com");
+		userDetails.setCustomerInterests("Shopping electronic goods");
+		userDetails.setCustomerJob("Sales");
+		userDetails.setCustomerName("Alex");
+		userDetails.setCustomerPassword("cogent123");
+		
+		RegistrationDAO customerDao = context.getBean("customerDao", RegistrationDAO.class);
+		customerDao.addCustomer(userDetails);
+		
 		return model;
 
 	}

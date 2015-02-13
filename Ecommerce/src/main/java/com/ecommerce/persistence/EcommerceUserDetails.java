@@ -2,22 +2,35 @@ package com.ecommerce.persistence;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="userdetails")
 public class EcommerceUserDetails implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	
 	@Id @GeneratedValue
     Long id;
+	@Column(name = "USER_ID")//@Column(name = "ID", unique = true)
+	public long customerId;
+	@Column(name = "USER_NAME")
 	private String customerName;
+	@Column(name = "USER_EMAIL")
 	private String customerEmail;
+	@Column(name = "USER_AGE")
 	private int customerAge;
+	@Column(name = "USER_PASSWORD")
 	private String customerPassword;
+	@Column(name = "USER_DESC")
 	private String customerDescription;
+	@Column(name = "USER_JOB")
 	private String customerJob;
+	@Column(name = "USER_INTRSTS")
 	private String customerInterests;
 
 	public EcommerceUserDetails() {
@@ -39,6 +52,21 @@ public class EcommerceUserDetails implements Serializable {
 		this.customerInterests = customerInterests;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public long getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(long customerId) {
+		this.customerId = customerId;
+	}
 	public String getCustomerName() {
 		return customerName;
 	}
