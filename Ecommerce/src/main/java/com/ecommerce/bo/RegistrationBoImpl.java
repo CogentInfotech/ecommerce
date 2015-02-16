@@ -5,29 +5,30 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ecommerce.dao.RegistrationDAO;
-import com.ecommerce.persistence.EcommerceUserDetails;
-
+import com.ecommerce.dao.RegistrationDao;
+import com.ecommerce.persistence.RegistrationBean;
+/*
 @Service
-public class RegistrationBoImpl implements RegistrationBO {
+public class RegistrationBoImpl implements RegistrationBo {
 
 	@Autowired
-	RegistrationDAO registrationDAO;
+	RegistrationDao registrationDao;
 	
-	public void setCustomerDao(RegistrationDAO customerDao) {
-		this.registrationDAO = customerDao;
+	public void setCustomerDao(RegistrationDao customerDao) {
+		this.registrationDao = customerDao;
 	}
 	
 	 
-	public void addCustomer(EcommerceUserDetails customer) {
+	public void addCustomer(RegistrationBean customer) {
 		// TODO Auto-generated method stub
 
-		registrationDAO.addCustomer(customer);
+	registrationDao.addCustomer(customer);
 	}
 
-	public List<EcommerceUserDetails> findAllCustomer() {
+	public List<RegistrationBean> findAllCustomer() {
 		// TODO Auto-generated method stub
-		return registrationDAO.findAllCustomer();
+		 return registrationDao.findAllCustomer();
+	 
 	}
 
-}
+}*/

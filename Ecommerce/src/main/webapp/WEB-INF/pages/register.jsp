@@ -1,6 +1,7 @@
 <%@page contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@page session="true"%>
 <script src="${pageContext.request.contextPath}/js/register.js"></script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -167,65 +168,41 @@ label.light {
 	   
 });
  </script>
-  <form action="/register_new" method="post">
+ <form:form action="/register_new" modelAttribute="registrationBean" method="POST">
+   
       
         <h1>Sign Up</h1>
         
         <fieldset>
           <legend><span class="number">1</span>Your basic info</legend>
           <label for="name">Name:</label>
-          <input type="text" id="name" name="user_name">
+          <form:input path="customerId"/>
           
           <label for="mail">Email:</label>
-          <input type="email" id="mail" name="user_email">
+           <form:input path="customerEmail"/>
           
           <label for="password">Password:</label>
-          <input type="password" id="password" name="user_password">
+           <form:input path="customerPassword"/>
           
           <label>Age:</label>
-          <input type="radio" id="under_13" value="under_13" name="user_age"><label for="under_13" class="light">Under 13</label><br>
-          <input type="radio" id="over_13" value="over_13" name="user_age"><label for="over_13" class="light">13 or older</label>
+           <form:input path="customerAge"/>
         </fieldset>
         
         <fieldset>
           <legend><span class="number">2</span>Your profile</legend>
           <label for="bio">Biography:</label>
-          <textarea id="bio" name="user_bio"></textarea>
+        <form:textarea path="customerDescription" rows="5" cols="30" />
         </fieldset>
         <fieldset>
         <label for="job">Job Role:</label>
-        <select id="job" name="user_job">
-          <optgroup label="Web">
-            <option value="frontend_developer">Front-End Developer</option>
-            <option value="php_developor">PHP Developer</option>
-            <option value="python_developer">Python Developer</option>
-            <option value="rails_developer"> Rails Developer</option>
-            <option value="web_designer">Web Designer</option>
-            <option value="WordPress_developer">WordPress Developer</option>
-          </optgroup>
-          <optgroup label="Mobile">
-            <option value="Android_developer">Androild Developer</option>
-            <option value="iOS_developer">iOS Developer</option>
-            <option value="mobile_designer">Mobile Designer</option>
-          </optgroup>
-          <optgroup label="Business">
-            <option value="business_owner">Business Owner</option>
-            <option value="freelancer">Freelancer</option>
-          </optgroup>
-          <optgroup label="Other">
-            <option value="secretary">Secretary</option>
-            <option value="maintenance">Maintenance</option>
-          </optgroup>
-        </select>
+         <form:input path="customerJob"/>
         
           <label>Interests:</label>
-          <input type="checkbox" id="development" value="interest_development" name="user_interest"><label class="light" for="development">Development</label><br>
-            <input type="checkbox" id="design" value="interest_design" name="user_interest"><label class="light" for="design">Design</label><br>
-          <input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Business</label>
+          <form:textarea path="customerInterests" rows="5" cols="30" />
         
         </fieldset>
         <button  id="register_submit"  type="submit">Sign Up</button>
-      </form>
+     </form:form>
  
 		 
 

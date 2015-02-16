@@ -12,15 +12,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
-import com.ecommerce.persistence.EcommerceUserDetails;
+import com.ecommerce.persistence.RegistrationBean;
  
 
 @Repository
-public class RegistrationDaoImpl extends  HibernateDaoSupport implements RegistrationDAO {
+public class RegistrationDaoImpl extends  HibernateDaoSupport implements RegistrationDao {
 
-	@Autowired
-	private SessionFactory sessionFactory;
-	
+ 	 
+ 	@Autowired
+ 	public void init(SessionFactory factory) {
+ 		 
+ 	    setSessionFactory(factory);
+ 	}
 	/*public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
@@ -29,16 +32,18 @@ public class RegistrationDaoImpl extends  HibernateDaoSupport implements Registr
 		this.sessionFactory = sessionFactory;
 	}*/
 
-	public void addCustomer(EcommerceUserDetails customer) {
+ 	
+	public void addCustomer(RegistrationBean customer) {
 		// TODO Auto-generated method stub
+		 
 		getHibernateTemplate().save(customer);
 	}
 
-	public List<EcommerceUserDetails> findAllCustomer() {
+	public List<RegistrationBean> findAllCustomer() {
 		// TODO Auto-generated method stub
 		String ps = "FROM userdetails";
 		Query query = getSessionFactory().openSession().createQuery(ps);
-		return (List<EcommerceUserDetails>) query.list();
+		return (List<RegistrationBean>) query.list();
 	}
 
 }

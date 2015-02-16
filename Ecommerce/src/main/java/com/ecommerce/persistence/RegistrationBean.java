@@ -3,14 +3,13 @@ package com.ecommerce.persistence;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
+@javax.persistence.Entity 
 @Table(name="userdetails")
-public class EcommerceUserDetails implements Serializable {
+public class RegistrationBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	
@@ -33,12 +32,12 @@ public class EcommerceUserDetails implements Serializable {
 	@Column(name = "USER_INTRSTS")
 	private String customerInterests;
 
-	public EcommerceUserDetails() {
+	public RegistrationBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public EcommerceUserDetails(String customerName, String customerEmail,
+	public RegistrationBean(String customerName, String customerEmail,
 			int customerAge, String customerPassword,
 			String customerDescription, String customerJob,
 			String customerInterests) {
@@ -160,7 +159,7 @@ public class EcommerceUserDetails implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EcommerceUserDetails other = (EcommerceUserDetails) obj;
+		RegistrationBean other = (RegistrationBean) obj;
 		if (customerAge != other.customerAge)
 			return false;
 		if (customerDescription == null) {

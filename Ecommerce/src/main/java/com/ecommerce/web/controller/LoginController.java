@@ -4,20 +4,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ecommerce.dao.RegistrationDAO;
-import com.ecommerce.persistence.EcommerceUserDetails;
-import com.ecommerce.persistence.UserDetailsDAO;
+import com.ecommerce.dao.RegistrationDao;
+import com.ecommerce.persistence.RegistrationBean;
+ 
+ 
 
 @Controller
 public class LoginController {
 
 	@Autowired
-	private UserDetailsDAO userDetailsDao;
+	private ApplicationContext appContext;
+	 @Autowired
+	private RegistrationDao registrationDao; 
 
 	/**
 	 * This Method is the starting point of webapp
@@ -58,14 +64,14 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public ModelAndView reggisterPage() {
+	public String  reggisterPage(Model model) {
 
-		ModelAndView model = new ModelAndView();
-		model.addObject("title", "Ecommerce Register form");
+		 
+		//model.addObject("title", "Ecommerce Register form");
+		 model.addAttribute("registrationBean", new RegistrationBean()); 
+		 return "register";
 
-		model.setViewName("register");
-
-		return model;
+		 
 
 	}
 
@@ -75,7 +81,7 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value = "/register_new", method = RequestMethod.GET)
-	public ModelAndView saveRegister() {
+	public ModelAndView saveRegister(@ModelAttribute RegistrationBean registrationBean) {
 
 		ModelAndView model = new ModelAndView();
 		model.addObject("title", "Ecommerce Register form");
@@ -83,20 +89,15 @@ public class LoginController {
 		model.setViewName("register");
 		/*EcommerceUserDetails details = new EcommerceUserDetails();
 		userDetailsDao.persist(details);*/
-		ApplicationContext context = new ClassPathXmlApplicationContext("spring-servlet.xml");
+		//ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		
-		EcommerceUserDetails userDetails = new EcommerceUserDetails();
+	      try{
+	    	  RegistrationDao customerDao = appContext.getBean("registrationDao", RegistrationDao.class);
+	  		customerDao.addCustomer(registrationBean);
+	      }catch(Exception ex){
+	    	  ex.printStackTrace();
+	      }
 		
-		userDetails.setCustomerAge(22);
-		userDetails.setCustomerDescription("Hello Ecommerce");
-		userDetails.setCustomerEmail("ecommerce@cogentinfo.com");
-		userDetails.setCustomerInterests("Shopping electronic goods");
-		userDetails.setCustomerJob("Sales");
-		userDetails.setCustomerName("Alex");
-		userDetails.setCustomerPassword("cogent123");
-		
-		RegistrationDAO customerDao = context.getBean("customerDao", RegistrationDAO.class);
-		customerDao.addCustomer(userDetails);
 		
 		return model;
 

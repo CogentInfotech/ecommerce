@@ -5,7 +5,15 @@
 
 	<display-name>Spring MVC Application</display-name>
 
-	<!-- Spring MVC -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring-security.xml,/WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+	
+	<!-- Spring Servlet MVC Mapping -->
 	<servlet>
 		<servlet-name>spring</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -15,10 +23,10 @@
 		<servlet-name>spring</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-<servlet-mapping>
+	<servlet-mapping>
 	<servlet-name>default</servlet-name>
 	<url-pattern>*.css</url-pattern>
-</servlet-mapping>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.js</url-pattern>
@@ -30,28 +38,21 @@
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.jpeg</url-pattern>
-	</servlet-mapping>
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>
-			/WEB-INF/spring-security.xml
-		</param-value>
-	</context-param>
-
+	</servlet-mapping>	 
+  <listener>
+	<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+  </listener> 
 	<!-- Spring Security -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	</filter>
-
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	
 	<session-config>
     <session-timeout>
       30
