@@ -168,7 +168,7 @@ label.light {
 	   
 });
  </script>
- <form:form action="/register_new" modelAttribute="registrationBean" method="POST">
+ <form:form action="/register_new" autocomplete="off" modelAttribute="registrationBean" method="POST">
    
       
         <h1>Sign Up</h1>

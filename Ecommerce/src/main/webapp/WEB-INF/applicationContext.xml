@@ -45,8 +45,8 @@
     </bean>
 	<!-- By using dbcp.BasicDataSource, you get a couple of extra properties: initalSize and maxActive  -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:@localhost:1521/cogent" />
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:test" />
         <property name="username" value="cogent" />
         <property name="password" value="Cogent123" />
 	</bean>
