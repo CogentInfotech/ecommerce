@@ -3,7 +3,7 @@
 
 $("#login").click(function(){
 var email = $("#email").val();
-
+alert('Hi');
 var password = $("#password").val();
 // Checking for blank fields.
 if( email =='' || password ==''){

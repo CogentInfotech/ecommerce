@@ -90,7 +90,7 @@
 			action="<c:url value='/j_spring_security_check' />" method='POST'>
 
 			<fieldset class="boxBody" padding-right: 35px;>
-			<label> <c:out value="${model.success}"/></label>
+			<label> <c:out value="${success}"/></label>
 				<label>Username</label> 
 					<input type="text" name='username' tabindex="1" placeholder="Avoid Special Characters" required>
 				<label>Password</label> 

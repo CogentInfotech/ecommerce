@@ -136,30 +136,13 @@ label.light {
 }
  </style> 
  <script type="text/javascript">
-/* $(document).ready(function(){  
-	 $("#form").submit(function(e) {
-		 var valid = true;
-		 var name = $("#customerName").val();
-		 var email = $("#customerEmail").val();
-		 var password = $("#customerPassword").val();
-		 var age = $("#customerAge").val();
-		 var description = $("#customerDescription").val();
+ $("#customerName").attr('required', 'required'); 
+ $("#customerEmail").attr('required', 'required'); 
+ $("#customerPassword").attr('required', 'required'); 
+ $("#customerAge").attr('required', 'required');  
  
-		  
-		 // Checking for blank fields.
-		 if( email =='' ){
-		 $('input[type="text"],input[id="email"]').css("border","2px solid red");
-		 $('input[type="text"],input[id="email"]').css("box-shadow","0 0 3px red");
-		 }else if(name==''){
-			 
-		 }
-	        if (valid) {
-	            $('#form').submit();
-	        }      
-	 });
-	 });*/
  </script>
- <form:form action="/Ecommerce/register_new" autocomplete="off" id="form" modelAttribute="userDetailsBean" method="GET">
+ <form:form action="/Ecommerce/register_new" autocomplete="off" id="form" onsubmit="return validateForm()" modelAttribute="userDetailsBean" method="GET">
    
       
         <h1>Sign Up</h1>
@@ -170,10 +153,10 @@ label.light {
           <form:input path="customerName" id="customerName" name="customerName"/>
           
           <label for="mail">Email:</label>
-           <form:input path="customerEmail" id="customerEmail" name="customerEmail"/>
+           <form:input path="customerEmail" id="customerEmail" type="email" name="customerEmail"/>
           
           <label for="password">Password:</label>
-           <form:input path="customerPassword" id="customerPassword" name="customerPassword"/>
+           <form:input path="customerPassword" id="customerPassword" type="password" name="customerPassword"/>
           
           <label>Age:</label>
            <form:input path="customerAge" id="customerAge" name="customerAge"/>
@@ -182,14 +165,14 @@ label.light {
         <fieldset>
           <legend><span class="number">2</span>Your profile</legend>
           <label for="bio">Biography:</label>
-        <form:textarea path="customerDescription" id="customerDescription" rows="5" cols="30" />
+        <form:textarea path="customerDescription" id="customerDescription" rows="5" cols="30"/>
         </fieldset>
         <fieldset>
         <label for="job">Job Role:</label>
          <form:input path="customerJob"  id="customerJob" name="customerJob"/>
         
           <label>Interests:</label>
-          <form:textarea path="customerInterests" id="customerInterests" name="customerInterests" rows="5" cols="30" />
+          <form:textarea path="customerInterests" id="customerInterests" name="customerInterests" rows="5" cols="30"/>
         
         </fieldset>
         <button  id="register_submit"  type="submit">Sign Up</button>
