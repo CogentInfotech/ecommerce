@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <%@page session="true"%>
 <script src="${pageContext.request.contextPath}/js/register.js"></script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -135,40 +136,30 @@ label.light {
 }
  </style> 
  <script type="text/javascript">
- $( "#register_submit" ).on( "click", function(e) {
-	   
-		
-	  var postData = $(this).serializeArray();
-	    var formURL = $(this).attr("action");
-	    
-	    
-	   $.ajax(
-	    {
-	        url :"/Ecommerce/register_new",
-	        type: "GET",
-	        beforeSend: function ( xhr ) {
-	            xhr.setRequestHeader( 'X-CSRF-Token', $('#csrfToken').val() );
-	          },
-	        data : $('#loginFormCsrf').serialize(),
-	        success:function(data, textStatus, jqXHR) 
-	        {
-	        	
-	        	$('#login-box').hide();
-	        	 
-	        	 $('#hiddenRegister').html(data);
-	        	
-	        	 
-	        },
-	        error: function(jqXHR, textStatus, errorThrown) 
-	        {
-	            //if fails      
-	        }
-	    }); 
-	    
-	   
-});
+/* $(document).ready(function(){  
+	 $("#form").submit(function(e) {
+		 var valid = true;
+		 var name = $("#customerName").val();
+		 var email = $("#customerEmail").val();
+		 var password = $("#customerPassword").val();
+		 var age = $("#customerAge").val();
+		 var description = $("#customerDescription").val();
+ 
+		  
+		 // Checking for blank fields.
+		 if( email =='' ){
+		 $('input[type="text"],input[id="email"]').css("border","2px solid red");
+		 $('input[type="text"],input[id="email"]').css("box-shadow","0 0 3px red");
+		 }else if(name==''){
+			 
+		 }
+	        if (valid) {
+	            $('#form').submit();
+	        }      
+	 });
+	 });*/
  </script>
- <form:form action="/register_new" autocomplete="off" modelAttribute="registrationBean" method="POST">
+ <form:form action="/Ecommerce/register_new" autocomplete="off" id="form" modelAttribute="userDetailsBean" method="GET">
    
       
         <h1>Sign Up</h1>
@@ -176,29 +167,29 @@ label.light {
         <fieldset>
           <legend><span class="number">1</span>Your basic info</legend>
           <label for="name">Name:</label>
-          <form:input path="customerId"/>
+          <form:input path="customerName" id="customerName" name="customerName"/>
           
           <label for="mail">Email:</label>
-           <form:input path="customerEmail"/>
+           <form:input path="customerEmail" id="customerEmail" name="customerEmail"/>
           
           <label for="password">Password:</label>
-           <form:input path="customerPassword"/>
+           <form:input path="customerPassword" id="customerPassword" name="customerPassword"/>
           
           <label>Age:</label>
-           <form:input path="customerAge"/>
+           <form:input path="customerAge" id="customerAge" name="customerAge"/>
         </fieldset>
         
         <fieldset>
           <legend><span class="number">2</span>Your profile</legend>
           <label for="bio">Biography:</label>
-        <form:textarea path="customerDescription" rows="5" cols="30" />
+        <form:textarea path="customerDescription" id="customerDescription" rows="5" cols="30" />
         </fieldset>
         <fieldset>
         <label for="job">Job Role:</label>
-         <form:input path="customerJob"/>
+         <form:input path="customerJob"  id="customerJob" name="customerJob"/>
         
           <label>Interests:</label>
-          <form:textarea path="customerInterests" rows="5" cols="30" />
+          <form:textarea path="customerInterests" id="customerInterests" name="customerInterests" rows="5" cols="30" />
         
         </fieldset>
         <button  id="register_submit"  type="submit">Sign Up</button>

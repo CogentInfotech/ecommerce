@@ -90,21 +90,22 @@
 			action="<c:url value='/j_spring_security_check' />" method='POST'>
 
 			<fieldset class="boxBody" padding-right: 35px;>
-
-				<label>Username</label> <input type="text" name='username'
-					tabindex="1" placeholder="Avoid Special Characters" required>
-				<label>Password</label> <input type="password" name='password'
-					tabindex="2" required> <label> <a href="#"
-					class="rLink" tabindex="5">Forget your password?</a>
-				</label> <label><a href="#" data-ajax="false" class="rLink" id ="register" tabindex="2">Register</a>
-				</label>
-               <label><input type="checkbox" tabindex="3">Keep me
-					logged in</label> <input type="submit" class="btnLogin" value="Login"
-					tabindex="4" name="submit"> <input type="hidden"
-					name="${_csrf.parameterName}" id = "csrfToken" value="${_csrf.token}" />
-			</fieldset>
-			 
+			<label> <c:out value="${model.success}"/></label>
+				<label>Username</label> 
+					<input type="text" name='username' tabindex="1" placeholder="Avoid Special Characters" required>
+				<label>Password</label> 
+					<input type="password" name='password' tabindex="2" required> <label>
+				 </label> 
+				<label>
+				<a href="#" data-ajax="false" class="rLink" id ="register" tabindex="3" style="float: left">Register</a>
+   
 				
+				</label>
+               <label>
+               		 
+               		 <input type="submit" class="btnLogin" value="Login" tabindex="4" name="submit" style="float: left">
+                 	<input type="hidden" name="${_csrf.parameterName}" id = "csrfToken" value="${_csrf.token}" />
+			</fieldset>		
 			 
 		</form>
 	</div>

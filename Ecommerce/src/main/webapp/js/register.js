@@ -1,10 +1,13 @@
-$("#register_submit").click(function(){
-	
-	alert('Hi Am here');
-});
-
-function formValidation()  
+ 
+function validateForm()  
 {  
+	
+	$('form input, form select').each(
+		    function(index){  
+		        var input = $(this);
+		        alert('Type: ' + input.attr('type') + 'Name: ' + input.attr('name') + 'Value: ' + input.val());
+		    }
+		);
 var uid = document.registration.userid;  
 var passid = document.registration.passid;  
 var uname = document.registration.username;  

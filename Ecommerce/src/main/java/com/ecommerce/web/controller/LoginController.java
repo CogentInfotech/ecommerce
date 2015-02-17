@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -64,12 +65,14 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String  reggisterPage(Model model) {
+	public ModelAndView  reggisterPage(Model model) {
 
 		 
 		//model.addObject("title", "Ecommerce Register form");
-		 model.addAttribute("registrationBean", new RegistrationBean()); 
-		 return "register";
+		
+		  
+		 return new ModelAndView("register", "userDetailsBean", new RegistrationFormBean());
+		 
 
 		 
 
@@ -81,28 +84,48 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value = "/register_new", method = RequestMethod.GET)
-	public ModelAndView saveRegister(@ModelAttribute RegistrationBean registrationBean) {
+	public ModelAndView saveRegister(@ModelAttribute ("userDetailsBean") RegistrationFormBean userDetailsBean, BindingResult result) {
 
-		ModelAndView model = new ModelAndView();
-		model.addObject("title", "Ecommerce Register form");
-
-		model.setViewName("register");
+		 
+		 
 		/*EcommerceUserDetails details = new EcommerceUserDetails();
 		userDetailsDao.persist(details);*/
 		//ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		
+		ModelAndView mnv=new ModelAndView();
+		mnv.setViewName("login");
+		mnv.addObject("success", "Successfully Registered!!");
+		  
 	      try{
 	    	  RegistrationDao customerDao = appContext.getBean("registrationDao", RegistrationDao.class);
-	  		customerDao.addCustomer(registrationBean);
+	    	  RegistrationBean bean = new RegistrationBean();
+	    	  bean.setCustomerName(userDetailsBean.getCustomerName() );
+	    	  bean.setCustomerAge(userDetailsBean.getCustomerAge());
+	    	  bean.setCustomerInterests(userDetailsBean.getCustomerInterests());
+	    	  bean.setCustomerPassword(userDetailsBean.getCustomerPassword());
+	    	  bean.setCustomerDescription(userDetailsBean.getCustomerDescription());
+	  		customerDao.addCustomer(bean);
 	      }catch(Exception ex){
 	    	  ex.printStackTrace();
 	      }
 		
 		
-		return model;
+	      return mnv;
 
 	}
 
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public ModelAndView home(
+			@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "logout", required = false) String logout) {
+
+		ModelAndView model = new ModelAndView();
+		model.setViewName("home");
+		 
+
+		return model;
+
+	}
 	/**
 	 * This method is responsible for login related validations
 	 * 
