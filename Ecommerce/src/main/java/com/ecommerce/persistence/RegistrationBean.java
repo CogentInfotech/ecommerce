@@ -16,7 +16,7 @@ public class RegistrationBean implements Serializable {
 	@Id @GeneratedValue
     Long id;
 	@Column(name = "USER_ID")//@Column(name = "ID", unique = true)
-	public long customerId;
+	private long customerId;
 	@Column(name = "USER_NAME")
 	private String customerName;
 	@Column(name = "USER_EMAIL")
@@ -31,7 +31,24 @@ public class RegistrationBean implements Serializable {
 	private String customerJob;
 	@Column(name = "USER_INTRSTS")
 	private String customerInterests;
+	@Column(name = "ROLE")
+	private String roleuser = "ROLE_USER";
 
+	/**
+	 * @return the roleuser
+	 */
+	public String getRoleuser() {
+		return roleuser;
+	}
+
+	/**
+	 * @param roleuser the roleuser to set
+	 */
+	public void setRoleuser(String roleuser) {
+		this.roleuser = roleuser;
+	}
+
+	
 	public RegistrationBean() {
 		super();
 		// TODO Auto-generated constructor stub
