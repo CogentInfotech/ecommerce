@@ -28,12 +28,15 @@
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">Update</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
         </property>	
 	</bean> 
 	
      <bean id="registrationDao" class="com.ecommerce.dao.RegistrationDaoImpl">
+    	 <property name="sessionFactory" ref="sessionFactory"/> 
+    </bean>
+    <bean id="myUserDetailsService" class="com.ecommerce.security.MyUserDetailsService">
     	 <property name="sessionFactory" ref="sessionFactory"/> 
     </bean>
 

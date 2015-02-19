@@ -30,18 +30,14 @@
 		            xhr.setRequestHeader( 'X-CSRF-Token', $('#csrfToken').val() );
 		          },
 		        data : $('#loginFormCsrf').serialize(),
-		        success:function(data, textStatus, jqXHR) 
-		        {
-		        	
-		        	$('#login-box').hide();
-		        	 
-		        	 $('#hiddenRegister').html(data);
+		        success:function(data, textStatus, jqXHR){
+		        	alert('Success');
+		        	$('.showWelcome').hide();
 		        	
 		        	 
 		        },
-		        error: function(jqXHR, textStatus, errorThrown) 
-		        {
-		            //if fails      
+		        error: function(jqXHR, textStatus, errorThrown){
+		        	alert('Error'); 
 		        }
 		    }); 
 		   
@@ -156,10 +152,13 @@ nav ul li {
         display: table-cell;
         width: 300px;
     }
+    .showSearchBox{
+    display:none;
+    }
 </style>
 <body>
     <header>
-        <h1>Ecommerce POC </h1>
+        <h1> </h1>
     </header>
     <nav>
         <!-- Navigation -->
@@ -179,10 +178,20 @@ nav ul li {
     <section id="main">
       <section>
     <article class="blogPost">
-				<div id = "flowMain">
+				<div id="flowMain">
 					<header>
-						<h2>Hello, Welcome to Ecommerce POC</h2>
-							<input type="text" name='username' tabindex="1" placeholder="Avoid Special Characters" required>
+						<div class="showWelcome">
+							<h2>Hello, Welcome to Ecommerce POC</h2>
+
+						</div>
+						<div class="showSearchBox">
+							<tr>
+								<td><input type="text" name='username' tabindex="1"
+									placeholder="Avoid Special Characters" required></td>
+								<td><input type="submit" class="btnLogin" value="Login"
+									tabindex="4" name="submit" style="float: left"></td>
+							</tr>
+						</div>
 					</header>
 				</div>
 

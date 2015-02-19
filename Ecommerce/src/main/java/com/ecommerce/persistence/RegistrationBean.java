@@ -15,22 +15,30 @@ public class RegistrationBean implements Serializable {
 	
 	@Id @GeneratedValue
     Long id;
-	@Column(name = "USER_ID")//@Column(name = "ID", unique = true)
+	@Column(name = "USER_ID")//@Column(name = "ID", unique = true)	
 	private long customerId;
+	
 	@Column(name = "USER_NAME")
 	private String customerName;
+	
 	@Column(name = "USER_EMAIL")
 	private String customerEmail;
+	
 	@Column(name = "USER_AGE")
 	private int customerAge;
+	
 	@Column(name = "USER_PASSWORD")
 	private String customerPassword;
+	
 	@Column(name = "USER_DESC")
 	private String customerDescription;
+	
 	@Column(name = "USER_JOB")
 	private String customerJob;
+	
 	@Column(name = "USER_INTRSTS")
 	private String customerInterests;
+	
 	@Column(name = "ROLE")
 	private String roleuser = "ROLE_USER";
 

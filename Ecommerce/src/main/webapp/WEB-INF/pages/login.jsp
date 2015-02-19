@@ -79,18 +79,17 @@
 
 		 
 
-		<c:if test="${not empty error}">
-			<div class="error">${error}</div>
-		</c:if>
-		<c:if test="${not empty msg}">
-			<div class="msg">${msg}</div>
-		</c:if>
+		
 
 		<form name='loginForm' class="box login" id=loginFormCsrf"
 			action="<c:url value='/j_spring_security_check' />" method='POST'>
 
 			<fieldset class="boxBody" padding-right: 35px;>
-			<label> <c:out value="${success}"/></label>
+			<label> <c:if test="${not empty error}">
+						<div class="error">${error}</div>
+					</c:if> <c:if test="${not empty msg}">
+						<div class="msg">${msg}</div>
+					</c:if> <c:out value="${success}"/></label>
 				<label>Username</label> 
 					<input type="text" name='username' tabindex="1" placeholder="Avoid Special Characters" required>
 				<label>Password</label> 
