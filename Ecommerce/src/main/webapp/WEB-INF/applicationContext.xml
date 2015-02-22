@@ -36,9 +36,9 @@
      <bean id="registrationDao" class="com.ecommerce.dao.RegistrationDaoImpl">
     	 <property name="sessionFactory" ref="sessionFactory"/> 
     </bean>
-     <bean id="productDao" class="com.ecommerce.dao.ProductDaoImpl">
+      <bean id="productDao" class="com.ecommerce.dao.ProductDaoImpl">
     	 <property name="sessionFactory" ref="sessionFactory"/> 
-    </bean>
+    </bean> 
     <bean id="myUserDetailsService" class="com.ecommerce.security.MyUserDetailsService">
     	 <property name="sessionFactory" ref="sessionFactory"/> 
     </bean>

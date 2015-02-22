@@ -20,13 +20,13 @@ public class ProductBean {
 	@Column(name = "PRODUCT_IMAGE")
 	private String productImage =null;
 	
-	@Column(name = "PRODUCT_IMAGE")
+	@Column(name = "PRODUCT_TYPE")
 	private String productType=null;
 	
 	@Column(name = "PRODUCT_PRICE")
 	private long productPrice ;
 	
-	@Column(name = "PRODUCT_Color")
+	@Column(name = "PRODUCT_COLOR")
 	private String productColor = null;
 	
 	@Column(name = "PRODUCT_DESCRIPTION")

@@ -46,11 +46,10 @@
 	  $('#doSearch').keypress(function (e) {
 		  var key = e.which;
 		  if(key == 13){ // the enter key code
-		   
+		   var keyword = $('#doSearch').val();
 			  /***/
-			     $.ajax(
-		    {
-		        url :"/Ecommerce/rest/getMsg",
+			     $.ajax({
+		        url :"/Ecommerce/rest/doSearch/"+keyword,
 		        type: "GET",
 		        beforeSend: function ( xhr ) {
 		            xhr.setRequestHeader( 'X-CSRF-Token', $('#csrfToken').val() );
