@@ -9,14 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 import com.ecommerce.dao.ProductDao;
+import com.ecommerce.web.bean.ShoppingCart;
 
 @Path("/doAddtoCart")
 public class CartService {
 	
 	   @Autowired
-		private ApplicationContext appContext;
-		 @Autowired
-		private ProductDao productDao;  
+	   private ApplicationContext appContext;
+	   
+	   @Autowired
+	   private ProductDao productDao;  
+	   
+	   @Autowired
+	   ShoppingCart shoppingCart;
 		 
 	@GET
 	@Path("/{param}")
