@@ -52,7 +52,26 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<!-- for Restful webservices -->
+	<servlet>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>com.ecommerce.rest</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
 	
+	<!-- for logging -->
+	<context-param>
+		<param-name>logdirectory</param-name>
+		<param-value>C://Users//cogent2//Downloads//LOG</param-value>
+	</context-param>
 	<session-config>
     <session-timeout>
       30

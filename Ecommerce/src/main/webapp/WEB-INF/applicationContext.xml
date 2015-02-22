@@ -36,16 +36,22 @@
      <bean id="registrationDao" class="com.ecommerce.dao.RegistrationDaoImpl">
     	 <property name="sessionFactory" ref="sessionFactory"/> 
     </bean>
+     <bean id="productDao" class="com.ecommerce.dao.ProductDaoImpl">
+    	 <property name="sessionFactory" ref="sessionFactory"/> 
+    </bean>
     <bean id="myUserDetailsService" class="com.ecommerce.security.MyUserDetailsService">
     	 <property name="sessionFactory" ref="sessionFactory"/> 
     </bean>
 
 	<!-- <bean id="registrationBo" class="com.ecommerce.bo.RegistrationBoImpl"> 
 		<property name="registrationDao" ref="registrationDao"/> </bean> -->
-    
-    <bean id="registrationBean" class="com.ecommerce.persistence.RegistrationBean">
-    	 
-    </bean>
+
+	<bean id="registrationBean" class="com.ecommerce.persistence.RegistrationBean">
+
+	</bean>
+	<bean id="productBean" class="com.ecommerce.persistence.ProductBean">
+
+	</bean>
 	<!-- By using dbcp.BasicDataSource, you get a couple of extra properties: initalSize and maxActive  -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>

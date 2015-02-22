@@ -17,7 +17,7 @@
  
 	  $( "#search" ).on( "click", function(e) {
 		  
-		  alert('Hello ');
+		 
 		  var postData = $(this).serializeArray();
 		    var formURL = $(this).attr("action");
 		    
@@ -31,9 +31,9 @@
 		          },
 		        data : $('#loginFormCsrf').serialize(),
 		        success:function(data, textStatus, jqXHR){
-		        	alert('Success');
+		        	 
 		        	$('.showWelcome').hide();
-		        	
+		        	$('.showSearchBox').show();
 		        	 
 		        },
 		        error: function(jqXHR, textStatus, errorThrown){
@@ -42,6 +42,32 @@
 		    }); 
 		   
 		});
+	  
+	  $('#doSearch').keypress(function (e) {
+		  var key = e.which;
+		  if(key == 13){ // the enter key code
+		   
+			  /***/
+			     $.ajax(
+		    {
+		        url :"/Ecommerce/rest/getMsg",
+		        type: "GET",
+		        beforeSend: function ( xhr ) {
+		            xhr.setRequestHeader( 'X-CSRF-Token', $('#csrfToken').val() );
+		          },
+		        data : $('#loginFormCsrf').serialize(),
+		        success:function(data, textStatus, jqXHR){
+		        	 		         
+		        	 
+		        },
+		        error: function(jqXHR, textStatus, errorThrown){
+		        	alert('Error'); 
+		        }
+		    });
+			  /**/
+		     
+		   }
+		 }); 
   });
 </script>
 <style>/* Makeshift CSS Reset */
@@ -101,7 +127,7 @@ nav ul li {
         line-height: 44px;
         text-align: center;
         text-decoration: none;
-        color: #777;
+        color: #FFECEC;
     }
  
         nav ul li a:hover {
@@ -186,10 +212,10 @@ nav ul li {
 						</div>
 						<div class="showSearchBox">
 							<tr>
-								<td><input type="text" name='username' tabindex="1"
-									placeholder="Avoid Special Characters" required></td>
-								<td><input type="submit" class="btnLogin" value="Login"
-									tabindex="4" name="submit" style="float: left"></td>
+								<td>
+									<input type="text" id = "doSearch" name='username' tabindex="1" placeholder="Avoid Special Characters" required>
+								</td>
+								
 							</tr>
 						</div>
 					</header>

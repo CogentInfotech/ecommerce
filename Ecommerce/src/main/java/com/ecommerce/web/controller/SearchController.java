@@ -14,7 +14,14 @@ public class SearchController {
 	@RequestMapping(value = "/searchKeyword", method = RequestMethod.GET)
 	public ModelAndView  showSearchProduct(Model model) {
 		
-		return new ModelAndView("register", "searchBean", new SearchBean());
+		return new ModelAndView("home", "searchBean", new SearchBean());
 	}
+	
+	@RequestMapping(value = "/doSearch", method = RequestMethod.GET)
+	public ModelAndView  doSearch(Model model) {
+		
+		return new ModelAndView("home", "searchBean", new SearchBean());
+	}
+	
 
 }

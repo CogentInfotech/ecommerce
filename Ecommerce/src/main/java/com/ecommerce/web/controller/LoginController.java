@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ecommerce.dao.RegistrationDao;
+import com.ecommerce.log.EcommerceLogger;
 import com.ecommerce.persistence.RegistrationBean;
  
  
@@ -32,6 +33,9 @@ public class LoginController {
 	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
 	public ModelAndView welcomePage() {
 
+		EcommerceLogger logger = EcommerceLogger.getInstance();
+		
+		logger.logFile("Hit the Welcome Page!");
 		ModelAndView model = new ModelAndView();
 
 		model.addObject("message", "Welcome to Ecommerce POC ");
