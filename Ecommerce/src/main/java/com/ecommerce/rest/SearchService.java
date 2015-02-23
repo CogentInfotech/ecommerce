@@ -9,12 +9,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.codehaus.jackson.map.ObjectMapper;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.ecommerce.common.JsonHelper;
@@ -129,8 +125,8 @@ public class SearchService {
 	      }catch(Exception ex){
 	    	  ex.printStackTrace();
 	      } 
- 
-		return Response.status(200).entity(jsonHelper.getProductJsonArray(listOfProducts)).build();
+		 return Response.ok(jsonHelper.getProductJsonArray(listOfProducts).toString(), MediaType.APPLICATION_JSON).build();
+		//return Response.status(200).entity(jsonHelper.getProductJsonArray(listOfProducts)).build();
  
 	}
 

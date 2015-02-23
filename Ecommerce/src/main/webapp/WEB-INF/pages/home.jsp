@@ -32,6 +32,11 @@
 		        data : $('#loginFormCsrf').serialize(),
 		        success:function(data, textStatus, jqXHR){
 		        	 
+		        	var dataArray = jQuery.parseJSON(data);
+		        	for(i=0;i<dataArray.length;i++){
+		        	   alert( data[i].productColor );
+		        	}
+		        	
 		        	$('.showWelcome').hide();
 		        	$('.showSearchBox').show();
 		        	 
@@ -56,7 +61,8 @@
 		          },
 		        data : $('#loginFormCsrf').serialize(),
 		        success:function(data, textStatus, jqXHR){
-		        	 		         
+		        	 		alert(data);   
+		        	 		$('##hiddenProdTab').show();
 		        	 
 		        },
 		        error: function(jqXHR, textStatus, errorThrown){
@@ -180,6 +186,9 @@ nav ul li {
     .showSearchBox{
     display:none;
     }
+    #hiddenProdTab{
+     display:none;
+    }
 </style>
 <body>
     <header>
@@ -217,6 +226,31 @@ nav ul li {
 								
 							</tr>
 						</div>
+						
+						<!--  -->
+						<div id = "hiddenProdTab">
+						<CENTER>
+							<FONT SIZE="4">Please select the products</FONT><BR>
+							<BR>
+
+							<TABLE CELLSPACING="15">
+								<TR ALIGN="CENTER" VALIGN="CENTER">
+									<TD WIDTH="20%"><IMG SRC=" " WIDTH="109" HEIGHT="109"
+										ALT=" "><BR> <B><I> </I></B></TD>
+									<TD WIDTH="20%"><IMG SRC=" " WIDTH="110" HEIGHT="73"
+										ALT=" "><BR> <B><I> </I></B></TD>
+									<TD WIDTH="20%"><IMG SRC=" " WIDTH="110" HEIGHT="82"
+										ALT=" "><BR> <B><I> </I></B></TD>
+									<TD WIDTH="20%"><IMG SRC=" " WIDTH="110" HEIGHT="58"
+										ALT=" "><BR> <B><I></I></B></TD>
+									<TD WIDTH="20%"><IMG SRC=" " WIDTH="109" HEIGHT="96"
+										ALT=" "> <BR>
+									<B><I> </I></B></TD>
+								</TR>
+							</TABLE>
+						</CENTER>
+						</div>
+						<!--  -->
 					</header>
 				</div>
 
