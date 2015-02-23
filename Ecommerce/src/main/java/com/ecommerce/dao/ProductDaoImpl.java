@@ -27,7 +27,7 @@ public class ProductDaoImpl extends HibernateDaoSupport implements ProductDao {
 	}
 
 	@Override
-	public List<ProductBean> findAllCustomer() {
+	public List<ProductBean> findAllProducts(){
 		// TODO Auto-generated method stub
 		
 		String ps = "FROM productdetails";

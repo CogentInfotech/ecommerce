@@ -1,15 +1,21 @@
 package com.ecommerce.rest;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
+import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
+import com.ecommerce.common.JsonHelper;
 import com.ecommerce.dao.ProductDao;
 import com.ecommerce.persistence.ProductBean;
 import com.ecommerce.web.controller.ApplicationContextHolder;
@@ -78,11 +84,14 @@ public class SearchService {
 	public Response getProducts(@PathParam("param") String msg) {
  
 		String output = "Jersey say : " + msg;
-		  
-		
+		List listOfProducts = null;  
+		JsonHelper jsonHelper = new JsonHelper();
 		 try{
 			 
 			productDao = ApplicationContextHolder.getContext().getBean("productDao",ProductDao.class);
+			listOfProducts = productDao.findAllProducts();
+			
+			
 			/*
 			ProductBean productBean = new ProductBean();
 			productBean.setProductColor("black");
@@ -118,7 +127,7 @@ public class SearchService {
 	    	  ex.printStackTrace();
 	      } 
  
-		return Response.status(200).entity(output).build();
+		return Response.status(200).entity(jsonHelper.getProductJsonArray(listOfProducts)).build();
  
 	}
 
