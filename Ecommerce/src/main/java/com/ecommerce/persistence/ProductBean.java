@@ -1,5 +1,7 @@
 package com.ecommerce.persistence;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,30 +9,31 @@ import javax.persistence.Table;
 
 @javax.persistence.Entity 
 @Table(name="productdetails")
-public class ProductBean {
+public class ProductBean implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	
-	
-	@Id @GeneratedValue
-    Long uniqueId;
-	
+	@Id
+	@GeneratedValue
+	Long uniqueId;
+
 	@Column(name = "PRODUCT_ID")
-	private String productId = null;
-	
+	private String productId;
+
 	@Column(name = "PRODUCT_IMAGE")
-	private String productImage =null;
-	
+	private String productImage;
+
 	@Column(name = "PRODUCT_TYPE")
-	private String productType=null;
-	
+	private String productType;
+
 	@Column(name = "PRODUCT_PRICE")
-	private long productPrice ;
-	
+	private long productPrice;
+
 	@Column(name = "PRODUCT_COLOR")
-	private String productColor = null;
-	
+	private String productColor;
+
 	@Column(name = "PRODUCT_DESCRIPTION")
-	private String productDescription = null;
+	private String productDescription;
 	
 	
 	/**
@@ -131,93 +134,16 @@ public class ProductBean {
 		this.productDescription = productDescription;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
+	/**
+	 * @return the serialversionuid
 	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((productColor == null) ? 0 : productColor.hashCode());
-		result = prime
-				* result
-				+ ((productDescription == null) ? 0 : productDescription
-						.hashCode());
-		result = prime * result
-				+ ((productId == null) ? 0 : productId.hashCode());
-		result = prime * result
-				+ ((productImage == null) ? 0 : productImage.hashCode());
-		result = prime * result + (int) (productPrice ^ (productPrice >>> 32));
-		result = prime * result
-				+ ((productType == null) ? 0 : productType.hashCode());
-		result = prime * result
-				+ ((uniqueId == null) ? 0 : uniqueId.hashCode());
-		return result;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof ProductBean)) {
-			return false;
-		}
-		ProductBean other = (ProductBean) obj;
-		if (productColor == null) {
-			if (other.productColor != null) {
-				return false;
-			}
-		} else if (!productColor.equals(other.productColor)) {
-			return false;
-		}
-		if (productDescription == null) {
-			if (other.productDescription != null) {
-				return false;
-			}
-		} else if (!productDescription.equals(other.productDescription)) {
-			return false;
-		}
-		if (productId == null) {
-			if (other.productId != null) {
-				return false;
-			}
-		} else if (!productId.equals(other.productId)) {
-			return false;
-		}
-		if (productImage == null) {
-			if (other.productImage != null) {
-				return false;
-			}
-		} else if (!productImage.equals(other.productImage)) {
-			return false;
-		}
-		if (productPrice != other.productPrice) {
-			return false;
-		}
-		if (productType == null) {
-			if (other.productType != null) {
-				return false;
-			}
-		} else if (!productType.equals(other.productType)) {
-			return false;
-		}
-		if (uniqueId == null) {
-			if (other.uniqueId != null) {
-				return false;
-			}
-		} else if (!uniqueId.equals(other.uniqueId)) {
-			return false;
-		}
-		return true;
-	}
+	
+	
+
 
 	
 	

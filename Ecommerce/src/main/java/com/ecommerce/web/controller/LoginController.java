@@ -89,10 +89,7 @@ public class LoginController {
 	public ModelAndView saveRegister(@ModelAttribute ("userDetailsBean") RegistrationFormBean userDetailsBean, BindingResult result) {
 
 		 
-		 
-		/*EcommerceUserDetails details = new EcommerceUserDetails();
-		userDetailsDao.persist(details);*/
-		//ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+ 
 		
 		ModelAndView mnv=new ModelAndView();
 		mnv.setViewName("login");

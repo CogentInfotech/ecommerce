@@ -7,17 +7,22 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Service;
 
 import com.ecommerce.dao.ProductDao;
 import com.ecommerce.persistence.ProductBean;
+import com.ecommerce.web.controller.ApplicationContextHolder;
 
 @Path("/doSearch")
+@Service
 public class SearchService {
 	
     @Autowired
 	private ApplicationContext appContext;
 	 @Autowired
 	private ProductDao productDao;  
+	 
 	 
 	 
 	@GET
@@ -28,7 +33,8 @@ public class SearchService {
 		
 		
 		 try{
-	    	  ProductDao customerDao = appContext.getBean("productDao", ProductDao.class);
+			 productDao = ApplicationContextHolder.getContext().getBean(
+						ProductDao.class);
 	    	  ProductBean bean = new ProductBean();
 	    	  bean.setProductColor( "Blue");
 	    	  bean.setProductDescription( "Kenmore 100 cu ft washer" );
@@ -36,7 +42,7 @@ public class SearchService {
 	    	  bean.setProductImage( "../img/washer.png" );
 	    	  bean.setProductType( "Washer" );
 	    	   
-	    	  customerDao.addCustomer(bean);
+	    	  productDao.addCustomer(bean);
 	    	  
 	    	  
 	    	  bean = new ProductBean();
@@ -46,7 +52,7 @@ public class SearchService {
 	    	  bean.setProductImage( "../img/dryer.png" );
 	    	  bean.setProductType( "Dryer" );
 	    	  
-	  		  customerDao.addCustomer(bean);
+	    	  productDao.addCustomer(bean);
 	  		  
 	  		 bean = new ProductBean();
 	    	  bean.setProductColor( "Orange");
@@ -55,7 +61,7 @@ public class SearchService {
 	    	  bean.setProductImage( "../img/dryer.png" );
 	    	  bean.setProductType( "Dryer" );
 	    	  
-	  		  customerDao.addCustomer(bean);
+	    	  productDao.addCustomer(bean);
 	  		  
 	  		  
 	  		
@@ -72,10 +78,40 @@ public class SearchService {
 	public Response getProducts(@PathParam("param") String msg) {
  
 		String output = "Jersey say : " + msg;
-		
+		  
 		
 		 try{
-	    	  ProductDao customerDao = appContext.getBean("productDao", ProductDao.class);
+			 
+			productDao = ApplicationContextHolder.getContext().getBean("productDao",ProductDao.class);
+			/*
+			ProductBean productBean = new ProductBean();
+			productBean.setProductColor("black");
+			productBean.setProductDescription("Kenmore 50 cu ft washer");
+			productBean.setProductId("ECOM_KEN_50_Washer");
+			productBean.setProductImage("../img/washer50.png");
+			productBean.setProductType("Washer");
+
+			productDao.addCustomer(productBean);	
+			
+			
+			  
+			productBean = new ProductBean();
+			productBean.setProductColor( "black");
+			productBean.setProductDescription( "Kmart 50 cu ft Dryer" );
+			productBean.setProductId( "ECOM_KMR_100_Dryer" );
+	    	productBean.setProductImage( "../img/dryer.png" );
+	    	productBean.setProductType( "Dryer" );
+	    	  
+	    	productDao.addCustomer(productBean);
+	  		  
+	    	productBean = new ProductBean();
+	    	productBean.setProductColor( "Red");
+	    	productBean.setProductDescription( "Kmart 50 cu ft Dryer" );
+	    	productBean.setProductId( "ECOM_KMR_100_Dryer" );
+	    	productBean.setProductImage( "../img/dryer.png" );
+	    	productBean.setProductType( "Dryer" );
+	    	  
+	    	productDao.addCustomer(productBean);*/
 	    	  
 	  		
 	      }catch(Exception ex){
