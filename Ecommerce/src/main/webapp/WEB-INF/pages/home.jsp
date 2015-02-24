@@ -30,13 +30,9 @@
 		            xhr.setRequestHeader( 'X-CSRF-Token', $('#csrfToken').val() );
 		          },
 		        data : $('#loginFormCsrf').serialize(),
-		        success:function(data, textStatus, jqXHR){
+		        success:function(data1){
 		        	 
-		        	var dataArray = jQuery.parseJSON(data);
-		        	for(i=0;i<dataArray.length;i++){
-		        	   alert( data[i].productColor );
-		        	}
-		        	
+		        
 		        	$('.showWelcome').hide();
 		        	$('.showSearchBox').show();
 		        	 
@@ -59,10 +55,44 @@
 		        beforeSend: function ( xhr ) {
 		            xhr.setRequestHeader( 'X-CSRF-Token', $('#csrfToken').val() );
 		          },
-		        data : $('#loginFormCsrf').serialize(),
-		        success:function(data, textStatus, jqXHR){
-		        	 		alert(data);   
-		        	 		$('##hiddenProdTab').show();
+		        
+		        success:function(data1){
+		        	 
+		        	alert('success');
+		        	/* for(i=0;i<data1.length;i++){
+		        	   alert( data1[i].productColor );
+		        	   
+		        	}		*/   
+		        	$("#hiddenProdTab").css("display", "block");
+		        	 
+		        	$("#showTab").append('<TABLE CELLSPACING="15">');
+		        	$("#showTab").append('<TR ALIGN="CENTER" VALIGN="CENTER">');
+		        	
+		        	for(i=0;i<data1.length;i++){
+		        	  
+		        	        alert(data1[i].productColor);
+		        	       $("#showTab").append('<TD WIDTH="20%">');
+		        	       $("#showTab").append('<IMG SRC="'+data1[i].productType+'" WIDTH="109" HEIGHT="109" ALT=" ">');
+		        	       $("#showTab").append('<BR>');
+		        	       $("#showTab").append('<B>');
+		        	       $("#showTab").append('<I>');
+		        	      
+		        	        	 $("#showTab").append(data1[i].productType);
+		        	        	 
+		        	        $("#showTab").append('</I>');
+		        	        $("#showTab").append('<TD>');
+		        	        $("#showTab").append('<input type="submit" value="Add to Cart"/>');
+		        	        $("#showTab").append('</TD>');
+		        	        $("#showTab").append('</B>');
+		        	        $("#showTab").append('</TD>');
+		        	         
+		        	    
+		        	}        	
+		        	$("#showTab").append('</TR>');
+		        	$("#showTab").append('</TABLE>');	        	
+		        	
+		        	//("#hiddenProdTab").html(innerHtml);
+		        	 		$('#hiddenProdTab').show();
 		        	 
 		        },
 		        error: function(jqXHR, textStatus, errorThrown){
@@ -74,6 +104,7 @@
 		   }
 		 }); 
   });
+  
 </script>
 <style>/* Makeshift CSS Reset */
 {
@@ -232,22 +263,10 @@ nav ul li {
 						<CENTER>
 							<FONT SIZE="4">Please select the products</FONT><BR>
 							<BR>
-
-							<TABLE CELLSPACING="15">
-								<TR ALIGN="CENTER" VALIGN="CENTER">
-									<TD WIDTH="20%"><IMG SRC=" " WIDTH="109" HEIGHT="109"
-										ALT=" "><BR> <B><I> </I></B></TD>
-									<TD WIDTH="20%"><IMG SRC=" " WIDTH="110" HEIGHT="73"
-										ALT=" "><BR> <B><I> </I></B></TD>
-									<TD WIDTH="20%"><IMG SRC=" " WIDTH="110" HEIGHT="82"
-										ALT=" "><BR> <B><I> </I></B></TD>
-									<TD WIDTH="20%"><IMG SRC=" " WIDTH="110" HEIGHT="58"
-										ALT=" "><BR> <B><I></I></B></TD>
-									<TD WIDTH="20%"><IMG SRC=" " WIDTH="109" HEIGHT="96"
-										ALT=" "> <BR>
-									<B><I> </I></B></TD>
-								</TR>
-							</TABLE>
+                           <div id = "showTab">
+                           
+                           </div>   
+						 
 						</CENTER>
 						</div>
 						<!--  -->
