@@ -8,5 +8,5 @@ import com.ecommerce.persistence.ProductBean;
 
 public interface ProductDao {
 	void addCustomer( ProductBean productBean);
-	List<ProductBean> findAllProducts();
+	List<ProductBean> findAllProducts(String keyWord);
 }

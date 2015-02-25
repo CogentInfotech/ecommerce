@@ -88,7 +88,7 @@ public class SearchService {
 		 try{
 			 
 			productDao = ApplicationContextHolder.getContext().getBean("productDao",ProductDao.class);
-			listOfProducts = productDao.findAllProducts();
+			listOfProducts = productDao.findAllProducts(msg);
 			
 			
 			/*

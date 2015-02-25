@@ -27,11 +27,12 @@ public class ProductDaoImpl extends HibernateDaoSupport implements ProductDao {
 	}
 
 	@Override
-	public List<ProductBean> findAllProducts(){
+	public List<ProductBean> findAllProducts(String keyWord){
 		// TODO Auto-generated method stub
 		
 		String ps = "FROM ProductBean";
 		Query query = getSessionFactory().openSession().createQuery(ps);
+	//	query.setParameter("p1", keyWord);
 		return (List<ProductBean>) query.list();
 	}
 

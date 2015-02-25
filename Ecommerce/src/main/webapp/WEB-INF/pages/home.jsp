@@ -44,6 +44,24 @@
 		   
 		});
 	  
+	  /*$( "#submitAddtoCart" ).on( "click", function(e) {
+		  
+		    var postData = $(this).serializeArray();
+		    var formURL = $(this).attr("action");
+		    alert('hi');
+		});*/
+	  
+	 
+	  
+	/*  $(document).on("click" , "#submitAddtoCart" , function(){
+			     alert('hello world');
+			  });*/
+			  
+		$('#showTab').on('click','submitAddtoCart',function(){
+			alert('H1');
+		});
+	  
+	  
 	  $('#doSearch').keypress(function (e) {
 		  var key = e.which;
 		  if(key == 13){ // the enter key code
@@ -61,8 +79,9 @@
 		        	alert('success');
 		        	/* for(i=0;i<data1.length;i++){
 		        	   alert( data1[i].productColor );
-		        	   
+		        	 
 		        	}		*/   
+		        	 var imgPath ="";
 		        	$("#hiddenProdTab").css("display", "block");
 		        	 
 		        	$("#showTab").append('<TABLE CELLSPACING="15">');
@@ -70,18 +89,19 @@
 		        	
 		        	for(i=0;i<data1.length;i++){
 		        	  
+		        		 imgPath ="Ecommerce/"+ data1[i].productImage;
 		        	        alert(data1[i].productColor);
 		        	       $("#showTab").append('<TD WIDTH="20%">');
-		        	       $("#showTab").append('<IMG SRC="'+data1[i].productType+'" WIDTH="109" HEIGHT="109" ALT=" ">');
-		        	       $("#showTab").append('<BR>');
+		        	       $("#showTab").append('<IMG SRC="'+imgPath+'" WIDTH="109" HEIGHT="109" ALT=" ">');
+		        	       $("#showTab").append('<input type="hidden" value="'+data1[i].productId+'">');
 		        	       $("#showTab").append('<B>');
 		        	       $("#showTab").append('<I>');
 		        	      
-		        	        	 $("#showTab").append(data1[i].productType);
+		        	        	// $("#showTab").append(data1[i].productType);
 		        	        	 
 		        	        $("#showTab").append('</I>');
 		        	        $("#showTab").append('<TD>');
-		        	        $("#showTab").append('<input type="submit" value="Add to Cart"/>');
+		        	        $("#showTab").append('<input type="button" name = "submitAddtoCart" id ="submitAddtoCart" value="Add to Cart"/>');
 		        	        $("#showTab").append('</TD>');
 		        	        $("#showTab").append('</B>');
 		        	        $("#showTab").append('</TD>');
@@ -249,6 +269,7 @@ nav ul li {
 							<h2>Hello, Welcome to Ecommerce POC</h2>
 
 						</div>
+						
 						<div class="showSearchBox">
 							<tr>
 								<td>
@@ -270,7 +291,7 @@ nav ul li {
 						</CENTER>
 						</div>
 						<!--  -->
-					</header>
+					
 				</div>
 
 
