@@ -16,6 +16,25 @@ public class JsonHelper {
 	JSONArray jsonArray = new JSONArray();
 	JSONObject userJson = null;
 
+	public JSONArray getAddtoCartOperationsArray(boolean bflag) {
+
+		userJson = new JSONObject();
+
+		try {
+			if (bflag) {
+				userJson.put("cartOperation", "success");
+			} else {
+				userJson.put("cartOperation", "failure");
+			}
+			jsonArray.put(userJson);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonArray;
+
+	}
+
 	public JSONArray getProductJsonArray(List<ProductBean> listOfPojos) {
 
 		for (ProductBean productBean : listOfPojos) {

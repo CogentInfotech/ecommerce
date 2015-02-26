@@ -2,10 +2,12 @@ package com.ecommerce.rest;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -26,6 +28,9 @@ public class SearchService {
 	private ApplicationContext appContext;
 	 @Autowired
 	private ProductDao productDao;  
+	 
+	 @Context
+	    private HttpServletRequest request;
 	 
 	 
 	 
@@ -120,13 +125,13 @@ public class SearchService {
 	    	productBean.setProductType( "Dryer" );
 	    	  
 	    	productDao.addCustomer(productBean);*/
-	    	  
+			request.getSession().setAttribute(request.getSession( true).getId(), listOfProducts); 
 	  		
 	      }catch(Exception ex){
 	    	  ex.printStackTrace();
 	      } 
 		 return Response.ok(jsonHelper.getProductJsonArray(listOfProducts).toString(), MediaType.APPLICATION_JSON).build();
-		//return Response.status(200).entity(jsonHelper.getProductJsonArray(listOfProducts)).build();
+		 
  
 	}
 

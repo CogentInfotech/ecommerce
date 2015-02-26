@@ -44,22 +44,22 @@
 		   
 		});
 	  
-	  /*$( "#submitAddtoCart" ).on( "click", function(e) {
-		  
-		    var postData = $(this).serializeArray();
-		    var formURL = $(this).attr("action");
-		    alert('hi');
-		});*/
-	  
-	 
-	  
-	/*  $(document).on("click" , "#submitAddtoCart" , function(){
-			     alert('hello world');
-			  });*/
-			  $("#showTab").on('click', '#submitAddtoCart', function() {
-			 /*$("#showTab").delegate('submitAddtoCart', 'click', function(){ */
-			/*  $("#showTab").on('click', 'submitAddtoCart', function() {*/
+	 $("#showTab").on('click', '#submitAddtoCart', function() {
+			 
 				alert('H1');
+				var prodId = $(this).siblings('input[name="hiddenProd"]').val();
+			     $.ajax({
+				        url :"/Ecommerce/rest/doAddtoCart/"+prodId,
+				        type: "GET",
+				        beforeSend: function ( xhr ) {
+				            xhr.setRequestHeader( 'X-CSRF-Token', $('#csrfToken').val() );
+				          },				        
+				        success:function(data1){
+				        },
+				        error: function(jqXHR, textStatus, errorThrown){
+				        	alert('Error'); 
+				        }
+				    });
 				});
 	  
 	  
@@ -94,7 +94,7 @@
 		        	        alert(data1[i].productColor);
 		        	       $("#showTab").append('<TD WIDTH="20%">');
 		        	       $("#showTab").append('<IMG SRC="'+imgPath+'" WIDTH="109" HEIGHT="109" ALT=" ">');
-		        	       $("#showTab").append('<input type="hidden" value="'+data1[i].productId+'">');
+		        	       $("#showTab").append('<input type="hidden" id="hiddenProd" value="'+data1[i].productId+'">');
 		        	       $("#showTab").append('<B>');
 		        	       $("#showTab").append('<I>');
 		        	      
