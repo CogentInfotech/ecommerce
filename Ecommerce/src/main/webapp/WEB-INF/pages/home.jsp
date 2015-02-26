@@ -56,10 +56,11 @@
 	/*  $(document).on("click" , "#submitAddtoCart" , function(){
 			     alert('hello world');
 			  });*/
-			  
-		$('#showTab').on('click','submitAddtoCart',function(){
-			alert('H1');
-		});
+			  $("#showTab").on('click', '#submitAddtoCart', function() {
+			 /*$("#showTab").delegate('submitAddtoCart', 'click', function(){ */
+			/*  $("#showTab").on('click', 'submitAddtoCart', function() {*/
+				alert('H1');
+				});
 	  
 	  
 	  $('#doSearch').keypress(function (e) {
