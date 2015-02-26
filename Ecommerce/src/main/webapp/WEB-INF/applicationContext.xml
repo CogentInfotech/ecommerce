@@ -45,6 +45,9 @@
     <bean id="myUserDetailsService" class="com.ecommerce.security.MyUserDetailsService">
     	 <property name="sessionFactory" ref="sessionFactory"/> 
     </bean>
+    <bean id="shoppingCart" class="com.ecommerce.web.bean.ShoppingCart">
+    	 
+    </bean>
 
  
 	<bean id="registrationBean" class="com.ecommerce.persistence.RegistrationBean">

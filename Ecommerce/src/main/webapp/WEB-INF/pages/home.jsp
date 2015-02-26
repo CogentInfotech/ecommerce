@@ -94,7 +94,7 @@
 		        	        alert(data1[i].productColor);
 		        	       $("#showTab").append('<TD WIDTH="20%">');
 		        	       $("#showTab").append('<IMG SRC="'+imgPath+'" WIDTH="109" HEIGHT="109" ALT=" ">');
-		        	       $("#showTab").append('<input type="hidden" id="hiddenProd" value="'+data1[i].productId+'">');
+		        	       $("#showTab").append('<input type="hidden" name="hiddenProd" id="hiddenProd" value="'+data1[i].productId+'">');
 		        	       $("#showTab").append('<B>');
 		        	       $("#showTab").append('<I>');
 		        	      

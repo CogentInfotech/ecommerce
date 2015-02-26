@@ -19,6 +19,7 @@ import com.ecommerce.common.JsonHelper;
 import com.ecommerce.dao.ProductDao;
 import com.ecommerce.persistence.ProductBean;
 import com.ecommerce.web.bean.ShoppingCart;
+import com.ecommerce.web.controller.ApplicationContextHolder;
 
 @Path("/doAddtoCart")
 public class CartService {
@@ -42,14 +43,26 @@ public class CartService {
 		String output = "Jersey say : " + msg;
 		JsonHelper jsonHelper = new JsonHelper();
 		try {
-			ProductDao customerDao = appContext.getBean("productDao",
-					ProductDao.class);
+			if (null == request.getSession().getAttribute(
+					request.getSession().getId() + "Cart")) {
+				shoppingCart = ApplicationContextHolder.getContext().getBean(
+						"shoppingCart", ShoppingCart.class);
+			} else {
+
+				shoppingCart = (ShoppingCart) request.getSession()
+						.getAttribute(request.getSession().getId() + "Cart");
+			}
+
 			List<ProductBean> listOfProducts = (List) request.getSession()
 					.getAttribute(request.getSession().getId());
 
 			for (ProductBean bean : listOfProducts) {
 				if (msg.equalsIgnoreCase(bean.getProductId())) {
 					shoppingCart.getListOfProductBeans().add(bean);
+					request.getSession()
+							.setAttribute(
+									request.getSession().getId() + "Cart",
+									shoppingCart);
 					return Response.ok(
 							jsonHelper.getAddtoCartOperationsArray(true)
 									.toString(), MediaType.APPLICATION_JSON)
