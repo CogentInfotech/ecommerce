@@ -30,6 +30,9 @@ public class CartService {
 	@Autowired
 	private ProductDao productDao;
 
+	/*
+	 * one to one mapping session id-> cart, cart is stored in session.
+	 */
 	@Autowired
 	ShoppingCart shoppingCart;
 
@@ -64,7 +67,7 @@ public class CartService {
 									request.getSession().getId() + "Cart",
 									shoppingCart);
 					return Response.ok(
-							jsonHelper.getAddtoCartOperationsArray(true)
+							jsonHelper.getAddtoCartOperationsArray(true,shoppingCart.getListOfProductBeans().size())
 									.toString(), MediaType.APPLICATION_JSON)
 							.build();
 				}
@@ -76,7 +79,7 @@ public class CartService {
 		}
 
 		return Response.ok(
-				jsonHelper.getAddtoCartOperationsArray(false).toString(),
+				jsonHelper.getAddtoCartOperationsArray(false,0).toString(),
 				MediaType.APPLICATION_JSON).build();
 
 	}

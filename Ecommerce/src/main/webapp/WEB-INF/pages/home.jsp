@@ -44,17 +44,23 @@
 		   
 		});
 	  
-	 $("#showTab").on('click', '#submitAddtoCart', function() {
+	 $("#showTab").on('click', '#submitAddtoCart', function(e) {
 			 
-				alert('H1');
-				var prodId = $(this).siblings('input[name="hiddenProd"]').val();
+		
+				
+				var prodId = $(this).siblings('input[name="hiddenProd"]').val(); /*$(this).closest('.prod').find('#hiddenProd',this).val(); */
 			     $.ajax({
 				        url :"/Ecommerce/rest/doAddtoCart/"+prodId,
 				        type: "GET",
 				        beforeSend: function ( xhr ) {
 				            xhr.setRequestHeader( 'X-CSRF-Token', $('#csrfToken').val() );
 				          },				        
-				        success:function(data1){
+				        success:function(data1){ 
+				        	   $('#cartMsg').append('<B>Successfully Added to cart.</B>');
+				        	   alert(data1);
+				        	   alert(data1.cartOperation);	
+				        	   alert(data1.cartCount);	
+				        	 
 				        },
 				        error: function(jqXHR, textStatus, errorThrown){
 				        	alert('Error'); 
@@ -85,14 +91,14 @@
 		        	 var imgPath ="";
 		        	$("#hiddenProdTab").css("display", "block");
 		        	 
-		        	$("#showTab").append('<TABLE CELLSPACING="15">');
-		        	$("#showTab").append('<TR ALIGN="CENTER" VALIGN="CENTER">');
+		        	$("#showTab").append('<table cellspacing="15">');
+		        	$("#showTab").append('<tr align="center" valign="center">');
 		        	
 		        	for(i=0;i<data1.length;i++){
 		        	  
 		        		 imgPath ="Ecommerce/"+ data1[i].productImage;
 		        	        alert(data1[i].productColor);
-		        	       $("#showTab").append('<TD WIDTH="20%">');
+		        	       $("#showTab").append('<td class ="prod" WIDTH="20%">');
 		        	       $("#showTab").append('<IMG SRC="'+imgPath+'" WIDTH="109" HEIGHT="109" ALT=" ">');
 		        	       $("#showTab").append('<input type="hidden" name="hiddenProd" id="hiddenProd" value="'+data1[i].productId+'">');
 		        	       $("#showTab").append('<B>');
@@ -101,16 +107,16 @@
 		        	        	// $("#showTab").append(data1[i].productType);
 		        	        	 
 		        	        $("#showTab").append('</I>');
-		        	        $("#showTab").append('<TD>');
+		        	        $("#showTab").append('<td>');
 		        	        $("#showTab").append('<input type="button" name = "submitAddtoCart" id ="submitAddtoCart" value="Add to Cart"/>');
-		        	        $("#showTab").append('</TD>');
+		        	        $("#showTab").append('</td>');
 		        	        $("#showTab").append('</B>');
-		        	        $("#showTab").append('</TD>');
+		        	        $("#showTab").append('</td>');
 		        	         
 		        	    
 		        	}        	
-		        	$("#showTab").append('</TR>');
-		        	$("#showTab").append('</TABLE>');	        	
+		        	$("#showTab").append('</tr>');
+		        	$("#showTab").append('</table>');	        	
 		        	
 		        	//("#hiddenProdTab").html(innerHtml);
 		        	 		$('#hiddenProdTab').show();
@@ -285,6 +291,7 @@ nav ul li {
 						<CENTER>
 							<FONT SIZE="4">Please select the products</FONT><BR>
 							<BR>
+							<div id="cartMsg"></div> 
                            <div id = "showTab">
                            
                            </div>   

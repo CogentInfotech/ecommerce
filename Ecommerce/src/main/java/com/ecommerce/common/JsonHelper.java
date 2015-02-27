@@ -16,13 +16,15 @@ public class JsonHelper {
 	JSONArray jsonArray = new JSONArray();
 	JSONObject userJson = null;
 
-	public JSONArray getAddtoCartOperationsArray(boolean bflag) {
+	public JSONArray getAddtoCartOperationsArray(boolean bflag,int productCount) {
 
 		userJson = new JSONObject();
 
 		try {
 			if (bflag) {
 				userJson.put("cartOperation", "success");
+				userJson.put("cartCount", productCount);
+				 
 			} else {
 				userJson.put("cartOperation", "failure");
 			}
