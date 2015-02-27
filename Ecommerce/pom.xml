@@ -84,7 +84,15 @@
 			<artifactId>aopalliance</artifactId>
 			<version>1.0</version>
 		</dependency>
+		
 		<dependency>
+			<groupId>asm</groupId>
+			<artifactId>asm</artifactId>
+			<version>3.3.1</version>
+		</dependency>
+		
+		<dependency>
+		
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
 			<version>2.2</version>
@@ -110,24 +118,30 @@
 			<artifactId>javassist</artifactId>
 			<version>3.12.1.GA</version>
 		</dependency>
-		<!-- Spring AOP for Logging
+		 
+		<!-- Spring AOP + AspectJ -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
+ 
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
-			<version>1.7.3</version>
-		</dependency> -->
-		<!-- Jersey Dependency for Restful
+			<version>1.6.11</version>
+		</dependency>
+ 
 		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-server</artifactId>
-			<version>1.8</version>
-		</dependency> -->
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.6.11</version>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2.2</version>
+		</dependency>
 		<!-- Json Dependency for Restful -->
 		<dependency>
 			<groupId>org.json</groupId>
@@ -145,6 +159,7 @@
 		<artifactId>jersey-bundle</artifactId>
 		<version>1.18.1</version>
 	</dependency>
+	
 		<!-- ORACLE database driver -->
 
 

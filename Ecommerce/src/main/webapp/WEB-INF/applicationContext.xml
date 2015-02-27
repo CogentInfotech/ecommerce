@@ -20,7 +20,10 @@
  <context:component-scan base-package="com.*">   
  	<context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
  </context:component-scan>  
- <aop:aspectj-autoproxy/>   
+ <bean id="logAspect" class="com.ecommerce.aspect.LoggingAspect" />
+<aop:aspectj-autoproxy proxy-target-class="true">
+    <aop:include name="logAspect" />
+    </aop:aspectj-autoproxy>
     	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"> 
 		<property name="dataSource" ref="dataSource"/>
     	<property name="packagesToScan" value="com.ecommerce.persistence"/>
@@ -51,11 +54,14 @@
 
  
 	<bean id="registrationBean" class="com.ecommerce.persistence.RegistrationBean">
-
 	</bean>
+	
 	<bean id="productBean" class="com.ecommerce.persistence.ProductBean">
-
 	</bean>
+	
+	<!-- Aspect -->
+	
+	
 	<!-- By using dbcp.BasicDataSource, you get a couple of extra properties: initalSize and maxActive  -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
