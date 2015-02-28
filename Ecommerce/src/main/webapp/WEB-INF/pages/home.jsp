@@ -15,6 +15,10 @@
   <script type="text/javascript">
   $(function(){
  
+	  
+	/*  $( "#logout" ).on( "click", function(e) {
+		  
+	  });*/
 	  $( "#search" ).on( "click", function(e) {
 		  
 		 
@@ -130,6 +134,9 @@
 		     
 		   }
 		 }); 
+	  function formSubmit() {
+			document.getElementById("logoutForm").submit();
+		}
   });
   
 </script>
@@ -255,6 +262,11 @@ nav ul li {
     <nav>
         <!-- Navigation -->
     </nav>
+    <c:url value="/j_spring_security_logout" var="logoutUrl" />
+	<form action="${logoutUrl}" method="post" id="logoutForm">
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+	</form>
     <section id="intro">
     
       <nav>
@@ -263,7 +275,7 @@ nav ul li {
 				<li><a href="#">Cart</a></li>
 				<li><a href="#">Checkout</a></li>
 				<li><a href="#">Receipt</a></li>
-				<li><a href="#">Logout</a></li>
+				<li><a href="javascript:formSubmit()" id="logout">Logout</a></li>
 			</ul>
 		</nav>
     </section>

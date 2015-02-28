@@ -1,5 +1,8 @@
 package com.ecommerce.web.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -60,6 +63,13 @@ public class LoginController {
 		return model;
 
 	}
+	@RequestMapping(value = "/logout**", method = RequestMethod.GET)
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response){
+		   ModelAndView view = new ModelAndView();
+		   request.getSession().invalidate();
+		   view.setViewName("hello");
+		   return view;
+		 }   
 
 	/**
 	 * This Method is responsible for handling the register page navigation

@@ -8,12 +8,15 @@ import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.springframework.stereotype.Component;
 
+@Component
 @Aspect
 public class LoggingAspect {
 
 	// @Around("execution(* *(..)) && @annotation(Loggable)")
-	@Around("execution(* com.ecommerce.web.controller..*(..))")
+	
+	@Around("execution(* org.springframework.web.servlet.mvc.Controller.*(. .))")
 	public void loggingController(ProceedingJoinPoint joinPoint)
 			throws Throwable {
 
@@ -27,7 +30,7 @@ public class LoggingAspect {
 				.println("************************************************************");
 	}
 
-	@After("execution(* com.ecommerce.rest.SearchService..*(..))")
+	@After("execution(* org.springframework.web.servlet.mvc.Controller.*(. .))")
 	public void loggingAfter(JoinPoint jp) throws Throwable {
 
 		System.out
@@ -38,7 +41,7 @@ public class LoggingAspect {
 				.println("************************************************************");
 	}
 
-	@Before("execution(* com.ecommerce.rest.SearchService..*(..))")
+	@Before("execution(* org.springframework.web.servlet.mvc.Controller.*(. .))")
 	public void loggingBefore(JoinPoint jp) throws Throwable {
 
 		// joinPoint.proceed();

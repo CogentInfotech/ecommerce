@@ -6,7 +6,7 @@
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
 	<http auto-config="true">
-		<intercept-url pattern="/admin**" access="ROLE_USER" />
+		<intercept-url pattern="/admin**" access="ROLE_ADMIN" />
 		
 		<form-login 
 		    login-page="/login" 
