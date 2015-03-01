@@ -1,5 +1,7 @@
 package com.ecommerce.web.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -55,12 +57,19 @@ public class LoginController {
 	@RequestMapping(value = "/admin**", method = RequestMethod.GET)
 	public ModelAndView adminPage() {
 
-		ModelAndView model = new ModelAndView();
-		model.addObject("title", "Spring Security Custom Login Form");
-		model.addObject("message", "This is protected page!");
-		model.setViewName("admin");
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("title", "Spring Security Custom Login Form");
+		modelAndView.addObject("message", "This is protected page!");
+		modelAndView.setViewName("admin");
 
-		return model;
+		RegistrationDao customerDao = appContext.getBean("registrationDao",
+				RegistrationDao.class);
+
+		List listOfRegistrationBean = customerDao.findAllCustomer();
+
+		modelAndView.addObject("usersList", listOfRegistrationBean);
+
+		return modelAndView;
 
 	}
 	@RequestMapping(value = "/logout**", method = RequestMethod.GET)

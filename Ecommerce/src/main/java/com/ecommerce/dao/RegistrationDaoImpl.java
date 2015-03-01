@@ -37,7 +37,7 @@ public class RegistrationDaoImpl extends  HibernateDaoSupport implements Registr
 
 	public List<RegistrationBean> findAllCustomer() {
 		// TODO Auto-generated method stub
-		String ps = "FROM userdetails";
+		String ps = "FROM RegistrationBean";
 		Query query = getSessionFactory().openSession().createQuery(ps);
 		return (List<RegistrationBean>) query.list();
 	}
