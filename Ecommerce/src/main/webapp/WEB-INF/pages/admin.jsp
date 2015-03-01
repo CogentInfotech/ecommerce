@@ -13,18 +13,63 @@
 <title>Page title</title>
 </head>
 </head>
-<script type="text/javascript">
+<c:url value="/j_spring_security_logout" var="logoutUrl" />
+	<form action="${logoutUrl}" method="post" id="logoutForm">
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+	</form>
+	<script>
+		function formSubmit() {
+			document.getElementById("logoutForm").submit();
+		}
+
+	 
+	</script>
+	  <script type="text/javascript">
+  $(function(){
+	  
+	  $( "#enableUserId" ).on( "click", function(e) { 
+			var userName =  $(this).siblings('input[type="hidden"]').val();
+			/*hiddenUserName*/  
+			$.ajax(
+					    {
+					        url :"/Ecommerce/enableUser"+userName,
+					        type: "GET",
+					        beforeSend: function ( xhr ) {
+					            xhr.setRequestHeader( 'X-CSRF-Token', $('#csrfToken').val() );
+					          },
+					        data : $('#loginFormCsrf').serialize(),
+					        success:function(data1){
+					        	  
+					        	 
+					        },
+					        error: function(jqXHR, textStatus, errorThrown){
+					        	alert('Error'); 
+					        }
+					    }); 
+	  }); 
+  });
+  
   </script>
+ disableUserId
 
 <style>
 {
 margin
+
+
 :
+
  
+
 0;
 padding
+
+
 :
+
  
+
 0;
 }
 
@@ -143,126 +188,158 @@ aside {
 #hiddenProdTab {
 	display: none;
 }
+
 .btn {
-  background: #3498db;
-  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
-  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
-  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
-  background-image: -o-linear-gradient(top, #3498db, #2980b9);
-  background-image: linear-gradient(to bottom, #3498db, #2980b9);
-  -webkit-border-radius: 37;
-  -moz-border-radius: 37;
-  border-radius: 37px;
-  font-family: Arial;
-  color: #f5edf5;
-  font-size: 20px;
-  padding: 8px 14px 10px 20px;
-  text-decoration: none;
+	background: #3498db;
+	background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+	background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+	background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+	background-image: -o-linear-gradient(top, #3498db, #2980b9);
+	background-image: linear-gradient(to bottom, #3498db, #2980b9);
+	-webkit-border-radius: 37;
+	-moz-border-radius: 37;
+	border-radius: 37px;
+	font-family: Arial;
+	color: #f5edf5;
+	font-size: 20px;
+	padding: 8px 14px 10px 20px;
+	text-decoration: none;
 }
 
 .btn:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-  text-decoration: none;
+	background: #3cb0fd;
+	background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+	background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+	background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+	background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+	background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+	text-decoration: none;
 }
+
 .CSSTableGenerator {
-	margin:0px;padding:0px;
-	width:99%;
+	margin: 0px;
+	padding: 0px;
+	width: 99%;
 	box-shadow: 10px 10px 5px #888888;
-	border:1px solid #000000;
-	
-	-moz-border-radius-bottomleft:0px;
-	-webkit-border-bottom-left-radius:0px;
-	border-bottom-left-radius:0px;
-	
-	-moz-border-radius-bottomright:0px;
-	-webkit-border-bottom-right-radius:0px;
-	border-bottom-right-radius:0px;
-	
-	-moz-border-radius-topright:0px;
-	-webkit-border-top-right-radius:0px;
-	border-top-right-radius:0px;
-	
-	-moz-border-radius-topleft:0px;
-	-webkit-border-top-left-radius:0px;
-	border-top-left-radius:0px;
-}.CSSTableGenerator table{
-    border-collapse: collapse;
-        border-spacing: 0;
-	width:100%;
-	height:100%;
-	margin:0px;padding:0px;
-}.CSSTableGenerator tr:last-child td:last-child {
-	-moz-border-radius-bottomright:0px;
-	-webkit-border-bottom-right-radius:0px;
-	border-bottom-right-radius:0px;
+	border: 1px solid #000000;
+	-moz-border-radius-bottomleft: 0px;
+	-webkit-border-bottom-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	-moz-border-radius-bottomright: 0px;
+	-webkit-border-bottom-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+	-moz-border-radius-topright: 0px;
+	-webkit-border-top-right-radius: 0px;
+	border-top-right-radius: 0px;
+	-moz-border-radius-topleft: 0px;
+	-webkit-border-top-left-radius: 0px;
+	border-top-left-radius: 0px;
 }
+
+.CSSTableGenerator table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+.CSSTableGenerator tr:last-child td:last-child {
+	-moz-border-radius-bottomright: 0px;
+	-webkit-border-bottom-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
 .CSSTableGenerator table tr:first-child td:first-child {
-	-moz-border-radius-topleft:0px;
-	-webkit-border-top-left-radius:0px;
-	border-top-left-radius:0px;
+	-moz-border-radius-topleft: 0px;
+	-webkit-border-top-left-radius: 0px;
+	border-top-left-radius: 0px;
 }
+
 .CSSTableGenerator table tr:first-child td:last-child {
-	-moz-border-radius-topright:0px;
-	-webkit-border-top-right-radius:0px;
-	border-top-right-radius:0px;
-}.CSSTableGenerator tr:last-child td:first-child{
-	-moz-border-radius-bottomleft:0px;
-	-webkit-border-bottom-left-radius:0px;
-	border-bottom-left-radius:0px;
-}.CSSTableGenerator tr:hover td{
-	
+	-moz-border-radius-topright: 0px;
+	-webkit-border-top-right-radius: 0px;
+	border-top-right-radius: 0px;
 }
-.CSSTableGenerator tr:nth-child(odd){ background-color:#e5e5e5; }
-.CSSTableGenerator tr:nth-child(even)    { background-color:#ffffff; }.CSSTableGenerator td{
-	vertical-align:middle;
-	
-	
-	border:1px solid #000000;
-	border-width:0px 1px 1px 0px;
-	text-align:left;
-	padding:7px;
-	font-size:10px;
-	font-family:Arial;
-	font-weight:normal;
-	color:#000000;
-}.CSSTableGenerator tr:last-child td{
-	border-width:0px 1px 0px 0px;
-}.CSSTableGenerator tr td:last-child{
-	border-width:0px 0px 1px 0px;
-}.CSSTableGenerator tr:last-child td:last-child{
-	border-width:0px 0px 0px 0px;
-}
-.CSSTableGenerator tr:first-child td{
-		background:-o-linear-gradient(bottom, #cccccc 5%, #b2b2b2 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #cccccc), color-stop(1, #b2b2b2) );
-	background:-moz-linear-gradient( center top, #cccccc 5%, #b2b2b2 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#cccccc", endColorstr="#b2b2b2");	background: -o-linear-gradient(top,#cccccc,b2b2b2);
 
-	background-color:#cccccc;
-	border:0px solid #000000;
-	text-align:center;
-	border-width:0px 0px 1px 1px;
-	font-size:14px;
-	font-family:Arial;
-	font-weight:bold;
-	color:#000000;
+.CSSTableGenerator tr:last-child td:first-child {
+	-moz-border-radius-bottomleft: 0px;
+	-webkit-border-bottom-left-radius: 0px;
+	border-bottom-left-radius: 0px;
 }
-.CSSTableGenerator tr:first-child:hover td{
-	background:-o-linear-gradient(bottom, #cccccc 5%, #b2b2b2 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #cccccc), color-stop(1, #b2b2b2) );
-	background:-moz-linear-gradient( center top, #cccccc 5%, #b2b2b2 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#cccccc", endColorstr="#b2b2b2");	background: -o-linear-gradient(top,#cccccc,b2b2b2);
 
-	background-color:#cccccc;
+.CSSTableGenerator tr:hover td {
+	
 }
-.CSSTableGenerator tr:first-child td:first-child{
-	border-width:0px 0px 1px 0px;
+
+.CSSTableGenerator tr:nth-child(odd) {
+	background-color: #e5e5e5;
 }
-.CSSTableGenerator tr:first-child td:last-child{
-	border-width:0px 0px 1px 1px;
+
+.CSSTableGenerator tr:nth-child(even) {
+	background-color: #ffffff;
+}
+
+.CSSTableGenerator td {
+	vertical-align: middle;
+	border: 1px solid #000000;
+	border-width: 0px 1px 1px 0px;
+	text-align: left;
+	padding: 7px;
+	font-size: 10px;
+	font-family: Arial;
+	font-weight: normal;
+	color: #000000;
+}
+
+.CSSTableGenerator tr:last-child td {
+	border-width: 0px 1px 0px 0px;
+}
+
+.CSSTableGenerator tr td:last-child {
+	border-width: 0px 0px 1px 0px;
+}
+
+.CSSTableGenerator tr:last-child td:last-child {
+	border-width: 0px 0px 0px 0px;
+}
+
+.CSSTableGenerator tr:first-child td {
+	background: -o-linear-gradient(bottom, #cccccc 5%, #b2b2b2 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #cccccc
+		), color-stop(1, #b2b2b2));
+	background: -moz-linear-gradient(center top, #cccccc 5%, #b2b2b2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cccccc",
+		endColorstr="#b2b2b2");
+	background: -o-linear-gradient(top, #cccccc, b2b2b2);
+	background-color: #cccccc;
+	border: 0px solid #000000;
+	text-align: center;
+	border-width: 0px 0px 1px 1px;
+	font-size: 14px;
+	font-family: Arial;
+	font-weight: bold;
+	color: #000000;
+}
+
+.CSSTableGenerator tr:first-child:hover td {
+	background: -o-linear-gradient(bottom, #cccccc 5%, #b2b2b2 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #cccccc
+		), color-stop(1, #b2b2b2));
+	background: -moz-linear-gradient(center top, #cccccc 5%, #b2b2b2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cccccc",
+		endColorstr="#b2b2b2");
+	background: -o-linear-gradient(top, #cccccc, b2b2b2);
+	background-color: #cccccc;
+}
+
+.CSSTableGenerator tr:first-child td:first-child {
+	border-width: 0px 0px 1px 0px;
+}
+
+.CSSTableGenerator tr:first-child td:last-child {
+	border-width: 0px 0px 1px 1px;
 }
 </style>
 <body bgcolor="#E6E6FA">
@@ -272,11 +349,7 @@ aside {
 	<nav>
 		<!-- Navigation -->
 	</nav>
-	<c:url value="/j_spring_security_logout" var="logoutUrl" />
-	<form action="${logoutUrl}" method="post" id="logoutForm">
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />
-	</form>
+ 
 	<section id="intro">
 
 		<nav>
@@ -304,7 +377,7 @@ aside {
 										<tr>
 											<td>User Id</td>
 											<td>Role</td>
-											<td> </td>
+											<td></td>
 											<td></td>
 										</tr>
 
@@ -313,10 +386,11 @@ aside {
 											<tr>
 												<td><b>${registrationBean.customerName}</b></td>
 												<td><b>${registrationBean.roleuser}</b></td>
-												<td><input type="button" class="btn"
-													onclick="enableUser(${myIndex.index})" value="Enable">&nbsp;
-													<input type="button" class="btn"
-													onclick="disableUser(${myIndex.index})" value="Disable">
+												<input type="hidden" id="hiddenUserName" value="${registrationBean.customerName}">
+												<td><input type="button" class="btn" id = "enableUserId"
+													  value="Enable">&nbsp;
+													<input type="button" class="btn" id = "disableUserId"
+													  value="Disable">
 												</td>
 
 
@@ -326,17 +400,15 @@ aside {
 								</div>
 
 								<div id="hiddenProdTab">
-							<CENTER>
+									<CENTER>
 
-								<BR>
-								<div id="cartMsg"></div>
-								<div id="showTab"></div>
+										<BR>
+										<div id="cartMsg"></div>
+										<div id="showTab"></div>
 
-							</CENTER>
-						</div>
-				</div>
-
-
+									</CENTER>
+								</div>
+							</div>
 			</article>
 		</section>
 	</section>

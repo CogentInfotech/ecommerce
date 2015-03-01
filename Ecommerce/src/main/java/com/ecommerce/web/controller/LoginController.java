@@ -72,6 +72,13 @@ public class LoginController {
 		return modelAndView;
 
 	}
+	
+	@RequestMapping(value = "/enableUser", method = RequestMethod.GET)
+	public ModelAndView enableUser( ){
+		   ModelAndView view = new ModelAndView();
+		  
+		   return view;
+		 }  
 	@RequestMapping(value = "/logout**", method = RequestMethod.GET)
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response){
 		   ModelAndView view = new ModelAndView();
