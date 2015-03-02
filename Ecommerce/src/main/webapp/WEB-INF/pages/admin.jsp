@@ -29,18 +29,44 @@
   $(function(){
 	  
 	  $( "#enableUserId" ).on( "click", function(e) { 
-			var userName =  $(this).siblings('input[type="hidden"]').val();
-			/*hiddenUserName*/  
+		  var userId = $(this).parent().find('#hiddenUserName').val();
+		  alert( userId );
+		
+			 
 			$.ajax(
 					    {
-					        url :"/Ecommerce/enableUser"+userName,
+					        url :"/Ecommerce/enableUser",
 					        type: "GET",
 					        beforeSend: function ( xhr ) {
 					            xhr.setRequestHeader( 'X-CSRF-Token', $('#csrfToken').val() );
 					          },
-					        data : $('#loginFormCsrf').serialize(),
+					          data: {  userIds :userId },
+					           
 					        success:function(data1){
-					        	  
+					        	alert(data1);
+					        	 
+					        },
+					        error: function(jqXHR, textStatus, errorThrown){
+					        	alert('Error'); 
+					        }
+					    }); 
+	  }); 
+	  $( "#disableUserId" ).on( "click", function(e) { 
+		  var userId = $(this).parent().find('#hiddenUserName').val();
+		  alert( userId );
+		
+			/*hiddenUserName*/  
+			$.ajax(
+					    {
+					        url :"/Ecommerce/disableUser",
+					        type: "GET",
+					        beforeSend: function ( xhr ) {
+					            xhr.setRequestHeader( 'X-CSRF-Token', $('#csrfToken').val() );
+					          },
+					          data: {  userIds :userId },
+					           
+					        success:function(data1){
+					        	alert(data1);
 					        	 
 					        },
 					        error: function(jqXHR, textStatus, errorThrown){
@@ -386,11 +412,12 @@ aside {
 											<tr>
 												<td><b>${registrationBean.customerName}</b></td>
 												<td><b>${registrationBean.roleuser}</b></td>
-												<input type="hidden" id="hiddenUserName" value="${registrationBean.customerName}">
+												
 												<td><input type="button" class="btn" id = "enableUserId"
 													  value="Enable">&nbsp;
 													<input type="button" class="btn" id = "disableUserId"
 													  value="Disable">
+													  <input type="hidden" id="hiddenUserName" value="${registrationBean.customerName}">
 												</td>
 
 

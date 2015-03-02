@@ -66,9 +66,7 @@ public class CartService {
 							.setAttribute(
 									request.getSession().getId() + "Cart",
 									shoppingCart);
-					return Response.ok(
-							jsonHelper.getAddtoCartOperationsArray(true,shoppingCart.getListOfProductBeans().size())
-									.toString(), MediaType.APPLICATION_JSON)
+					return Response.ok(jsonHelper.getAddtoCartOperationsArray(true,shoppingCart.getListOfProductBeans().size()).toString(), MediaType.APPLICATION_JSON)
 							.build();
 				}
 

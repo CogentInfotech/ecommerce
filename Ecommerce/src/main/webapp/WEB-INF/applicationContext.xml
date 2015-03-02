@@ -45,6 +45,10 @@
       <bean id="cartOperationsDao" class="com.ecommerce.dao.CartOperationsDaoImpl">
     	 <property name="sessionFactory" ref="sessionFactory"/> 
     </bean> 
+      <bean id="userOperationsDao" class="com.ecommerce.dao.security.UserOperationsDaoImpl">
+    	 <property name="sessionFactory" ref="sessionFactory"/> 
+    </bean> 
+    
     <bean id="myUserDetailsService" class="com.ecommerce.security.MyUserDetailsService">
     	 <property name="sessionFactory" ref="sessionFactory"/> 
     </bean>

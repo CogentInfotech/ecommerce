@@ -16,7 +16,7 @@ public class JsonHelper {
 	JSONArray jsonArray = new JSONArray();
 	JSONObject userJson = null;
 
-	public JSONArray getAddtoCartOperationsArray(boolean bflag,int productCount) {
+	public JSONArray getAddtoCartOperationsArray(boolean bflag, int productCount) {
 
 		userJson = new JSONObject();
 
@@ -24,7 +24,7 @@ public class JsonHelper {
 			if (bflag) {
 				userJson.put("cartOperation", "success");
 				userJson.put("cartCount", productCount);
-				 
+
 			} else {
 				userJson.put("cartOperation", "failure");
 			}
@@ -63,4 +63,33 @@ public class JsonHelper {
 		}
 		return jsonArray;
 	}
+
+	public JSONArray getFailureJson() {
+		// TODO Auto-generated method stub
+		userJson = new JSONObject();
+		try {
+			userJson.put("operation", "failure");
+			jsonArray.put(userJson);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return jsonArray;
+	}
+
+	public JSONArray getSuccessJson() {
+		// TODO Auto-generated method stub
+		userJson = new JSONObject();
+		try {
+			userJson.put("operation", "success");
+			jsonArray.put(userJson);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return jsonArray;
+	}
+
 }
