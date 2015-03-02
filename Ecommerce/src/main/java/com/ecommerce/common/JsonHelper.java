@@ -64,32 +64,32 @@ public class JsonHelper {
 		return jsonArray;
 	}
 
-	public JSONArray getFailureJson() {
+	public JSONObject getFailureJson() {
 		// TODO Auto-generated method stub
 		userJson = new JSONObject();
 		try {
 			userJson.put("operation", "failure");
-			jsonArray.put(userJson);
+			 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return jsonArray;
+		return userJson;
 	}
 
-	public JSONArray getSuccessJson() {
+	public JSONObject getSuccessJson() {
 		// TODO Auto-generated method stub
 		userJson = new JSONObject();
 		try {
 			userJson.put("operation", "success");
-			jsonArray.put(userJson);
+			 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return jsonArray;
+		return userJson;
 	}
 
 }

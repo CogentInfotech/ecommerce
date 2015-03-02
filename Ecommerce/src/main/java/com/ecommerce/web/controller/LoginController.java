@@ -2,6 +2,8 @@ package com.ecommerce.web.controller;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response;
@@ -31,6 +33,8 @@ import com.ecommerce.persistence.RegistrationBean;
 @Controller
 public class LoginController {
 
+	private static final Logger logger = Logger.getLogger(LoginController.class);
+	
 	@Autowired
 	private ApplicationContext appContext;
 	@Autowired
@@ -46,9 +50,14 @@ public class LoginController {
 	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
 	public ModelAndView welcomePage() {
 
-		EcommerceLogger logger = EcommerceLogger.getInstance();
+		 
 		
-		logger.logFile("Hit the Welcome Page!");
+		if(logger.isDebugEnabled()){
+			logger.debug("getWelcome is executed!");
+			logger.info( "*********************************Welcome**********************************************");
+		}
+		logger.info( "*********************************Welcome**********************************************");
+		 
 		ModelAndView model = new ModelAndView();
 
 		model.addObject("message", "Welcome to Ecommerce POC ");
@@ -82,35 +91,36 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/enableUser", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-	public Response enableUser( @RequestParam("userIds") String userId) {
+	public @ResponseBody String enableUser( @RequestParam("userIds") String userId) {
 	    // your logic here
-		
+		 
 		JsonHelper helper  = new JsonHelper();
 		UserOperationsDao operationsDao = appContext.getBean("userOperationsDao", UserOperationsDao.class);
 		if(operationsDao.enableUser(userId)){
-			return Response.ok(	helper.getSuccessJson().toString(),javax.ws.rs.core.MediaType.APPLICATION_JSON).build();
+			return  helper.getSuccessJson().toString()  ;  
 		}else{
-			   
-			return Response.ok(	helper.getFailureJson().toString(),javax.ws.rs.core.MediaType.APPLICATION_JSON).build();
+			return  helper.getFailureJson().toString();     
+			 
 		}
    	 
-	    
+		 
 	}
 	
 	@RequestMapping(value = "/disableUser", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-	public Response disableUser( @RequestParam("userIds") String userId) {
+	public @ResponseBody String disableUser( @RequestParam("userIds") String userId) {
 	    // your logic here
-		
+		 
 		JsonHelper helper  = new JsonHelper();
 		UserOperationsDao operationsDao = appContext.getBean("userOperationsDao", UserOperationsDao.class);
 		if(operationsDao.disableUser(userId)){
-			return Response.ok(	helper.getSuccessJson().toString(),javax.ws.rs.core.MediaType.APPLICATION_JSON).build();
+			return helper.getSuccessJson().toString() ;  
+			 
 		}else{
 			   
-			return Response.ok(	helper.getFailureJson().toString(),javax.ws.rs.core.MediaType.APPLICATION_JSON).build();
+			return helper.getFailureJson().toString()  ;   
 		}
    	 
-	    
+		 
 	}
 	
 	/*@RequestMapping(value = "/enableUser", method = RequestMethod.GET)

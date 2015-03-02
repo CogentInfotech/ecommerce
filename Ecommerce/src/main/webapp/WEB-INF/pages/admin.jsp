@@ -28,10 +28,10 @@
 	  <script type="text/javascript">
   $(function(){
 	  
-	  $( "#enableUserId" ).on( "click", function(e) { 
-		  var userId = $(this).parent().find('#hiddenUserName').val();
-		  alert( userId );
-		
+	  $(".CSSTableGenerator").on('click', '#enableUserId', function(e) {
+	  
+		  var userId = $(this).parent().closest( 'td' ).find('#hiddenUserName').val(); 
+		  
 			 
 			$.ajax(
 					    {
@@ -43,19 +43,25 @@
 					          data: {  userIds :userId },
 					           
 					        success:function(data1){
-					        	alert(data1);
+					        	 
+					        	$('#mydata #meessage').text("Successfully enabled the access of "+userId);
+					        	//$(this).parent().closest( 'td' ).find('.changeRoleStatus').text("ROLE_USER"); 
 					        	 
 					        },
 					        error: function(jqXHR, textStatus, errorThrown){
-					        	alert('Error'); 
+					        	 
+					        	$('#mydata #meessage').text("We are facing technical difficulties while updating the role  of "+userId);
+					        //	$(this).parent().closest( 'td' ).find('.changeRoleStatus').text("ROLE_USER"); 
 					        }
 					    }); 
 	  }); 
-	  $( "#disableUserId" ).on( "click", function(e) { 
+	 
+	  $(".CSSTableGenerator").on('click', '#disableUserId', function(e) {
+	 
 		  var userId = $(this).parent().find('#hiddenUserName').val();
-		  alert( userId );
+		 
 		
-			/*hiddenUserName*/  
+			   
 			$.ajax(
 					    {
 					        url :"/Ecommerce/disableUser",
@@ -66,18 +72,26 @@
 					          data: {  userIds :userId },
 					           
 					        success:function(data1){
-					        	alert(data1);
-					        	 
+					        	
+					        	/*alert( $(this).parent().find('.changeRoleStatus').text() );
+					        	alert( $(this).closest('td').find('.changeRoleStatus').text() );
+					        	alert( $(this).parent().closest( 'b' ).find('.changeRoleStatus').text() );*/
+					        	 $('#mydata #meessage').text("Successfully disabled the access of "+userId);
+					        	// $(this).parent().closest( 'td' ).find('.changeRoleStatus').text("ROLE_NULL");  
 					        },
 					        error: function(jqXHR, textStatus, errorThrown){
-					        	alert('Error'); 
+					        	 
+					        	/*alert( $(this).parent().find('.changeRoleStatus').text() );
+					        	alert( $(this).closest('td').find('.changeRoleStatus').text() );
+					        	alert( $(this).parent().closest( 'b' ).find('.changeRoleStatus').text() );*/
+					        	$('#mydata #meessage').text("We are facing technical difficulties while updating the role  of "+userId);
 					        }
 					    }); 
 	  }); 
   });
   
   </script>
- disableUserId
+  
 
 <style>
 {
@@ -397,6 +411,7 @@ aside {
 						<div class="showWelcome">
 							<h2>Hello, Welcome to Ecommerce POC</h2>
 							<div id="mydata">
+							<div id = "meessage"></div>
 								<b>Current Users data in the system ...</b>
 								<div class="CSSTableGenerator">
 									<table>
@@ -410,15 +425,17 @@ aside {
 										<c:forEach var="registrationBean" items="${usersList}"
 											varStatus="myIndex">
 											<tr>
-												<td><b>${registrationBean.customerName}</b></td>
-												<td><b>${registrationBean.roleuser}</b></td>
-												
-												<td><input type="button" class="btn" id = "enableUserId"
-													  value="Enable">&nbsp;
-													<input type="button" class="btn" id = "disableUserId"
-													  value="Disable">
-													  <input type="hidden" id="hiddenUserName" value="${registrationBean.customerName}">
-												</td>
+												<td><b> ${registrationBean.customerName} </b></td>
+												<td class ="changeRoleStatus"><b> ${registrationBean.roleuser} </b></td>
+
+												<td><input type="button" class="btn" id="enableUserId"
+													value="Enable"><input type="hidden"
+													id="hiddenUserName"
+													value="${registrationBean.customerName}"> &nbsp;</td>
+												<td><input type="button" class="btn" id="disableUserId"
+													value="Disable"> <input type="hidden"
+													id="hiddenUserName"
+													value="${registrationBean.customerName}"></td>
 
 
 											</tr>
