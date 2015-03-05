@@ -21,14 +21,13 @@
 		function formSubmit() {
 			document.getElementById("logoutForm").submit();
 		}
+		function gotoCart() {
+			document.getElementById("cartForm").submit();
+		}
 	</script>
   <script type="text/javascript">
   $(function(){
  
-	  
-	/*  $( "#logout" ).on( "click", function(e) {
-		  
-	  });*/
 	  $( "#search" ).on( "click", function(e) {
 		  
 		 
@@ -70,10 +69,9 @@
 				            xhr.setRequestHeader( 'X-CSRF-Token', $('#csrfToken').val() );
 				          },				        
 				        success:function(data1){ 
+				        	   $('#cartMsg').text("");
 				        	   $('#cartMsg').append('<B>Successfully Added to cart.</B>');
-				        	   alert(data1);
-				        	   alert(data1.cartOperation);	
-				        	   alert(data1.cartCount);	
+				        	 
 				        	 
 				        },
 				        error: function(jqXHR, textStatus, errorThrown){
@@ -97,7 +95,7 @@
 		        
 		        success:function(data1){
 		        	 
-		        	alert('success');
+		        	/*alert('success');*/
 		        	/* for(i=0;i<data1.length;i++){
 		        	   alert( data1[i].productColor );
 		        	 
@@ -111,7 +109,7 @@
 		        	for(i=0;i<data1.length;i++){
 		        	  
 		        		 imgPath ="Ecommerce/"+ data1[i].productImage;
-		        	        alert(data1[i].productColor);
+		        	        /*alert(data1[i].productColor);*/
 		        	       $("#showTab").append('<td class ="prod" WIDTH="20%">');
 		        	       $("#showTab").append('<IMG SRC="'+imgPath+'" WIDTH="109" HEIGHT="109" ALT=" ">');
 		        	       $("#showTab").append('<input type="hidden" name="hiddenProd" id="hiddenProd" value="'+data1[i].productId+'">');
@@ -140,13 +138,17 @@
 		        	alert('Error'); 
 		        }
 		    });
-			  /**/
+			  
 		     
 		   }
 		 }); 
 	  function formSubmit() {
 			document.getElementById("logoutForm").submit();
 		}
+	  function gotoCart() {
+			document.getElementById("cartForm").submit();
+		}
+	  
   });
   
 </script>
@@ -277,12 +279,17 @@ nav ul li {
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
 	</form>
+	<form action="/Ecommerce/cart" method="post" id="cartForm">
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+	</form>
+	
     <section id="intro">
     
       <nav>
 			<ul>
 				<li><a href="#" data-ajax="false" id="search" tabindex="3" style="float: left">Search</a></li>
-				<li><a href="#">Cart</a></li>
+				<li><a href="javascript:gotoCart()" id="cart">Cart</a></li>
 				<li><a href="#">Checkout</a></li>
 				<li><a href="#">Receipt</a></li>
 				<li><a href="javascript:formSubmit()" id="logout">Logout</a></li>

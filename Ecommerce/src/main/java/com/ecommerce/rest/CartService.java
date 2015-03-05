@@ -2,8 +2,6 @@ package com.ecommerce.rest;
 
 import java.util.List;
 
-import javassist.bytecode.Descriptor.Iterator;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -16,7 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 import com.ecommerce.common.JsonHelper;
+import com.ecommerce.dao.CartOperationsDao;
 import com.ecommerce.dao.ProductDao;
+import com.ecommerce.dao.security.UserOperationsDao;
+import com.ecommerce.persistence.CartBean;
 import com.ecommerce.persistence.ProductBean;
 import com.ecommerce.web.bean.ShoppingCart;
 import com.ecommerce.web.controller.ApplicationContextHolder;
@@ -27,9 +28,11 @@ public class CartService {
 	@Autowired
 	private ApplicationContext appContext;
 
+	 
+	
+	 
 	@Autowired
-	private ProductDao productDao;
-
+	private CartOperationsDao cartOperationsDao;
 	/*
 	 * one to one mapping session id-> cart, cart is stored in session.
 	 */
@@ -45,6 +48,10 @@ public class CartService {
 
 		String output = "Jersey say : " + msg;
 		JsonHelper jsonHelper = new JsonHelper();
+		CartBean cBean = new CartBean();
+		CartOperationsDao cartOperationsDao =ApplicationContextHolder.getContext().getBean(
+				CartOperationsDao.class);
+				 
 		try {
 			if (null == request.getSession().getAttribute(
 					request.getSession().getId() + "Cart")) {
@@ -62,6 +69,11 @@ public class CartService {
 			for (ProductBean bean : listOfProducts) {
 				if (msg.equalsIgnoreCase(bean.getProductId())) {
 					shoppingCart.getListOfProductBeans().add(bean);
+					
+					cBean.setProductId( bean.getProductId());
+					cBean.setCartId(request.getSession().getId());
+					 
+					cartOperationsDao.addToCart( cBean );
 					request.getSession()
 							.setAttribute(
 									request.getSession().getId() + "Cart",

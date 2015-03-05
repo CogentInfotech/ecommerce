@@ -1,8 +1,11 @@
 package com.ecommerce.dao;
 
-import com.ecommerce.persistence.ProductBean;
+import java.util.List;
+
+import com.ecommerce.persistence.CartBean;
 
 public interface CartOperationsDao {
 
-	public boolean addToCart(ProductBean bean);
+	public boolean addToCart(CartBean bean);
+	public List<CartBean> retrieveCart(String sessionId);
 }
