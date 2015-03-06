@@ -72,7 +72,7 @@ public class CartService {
 					
 					cBean.setProductId( bean.getProductId());
 					cBean.setCartId(request.getSession().getId());
-					 
+					cBean.setProductPrice(bean.getProductPrice() );
 					cartOperationsDao.addToCart( cBean );
 					request.getSession()
 							.setAttribute(

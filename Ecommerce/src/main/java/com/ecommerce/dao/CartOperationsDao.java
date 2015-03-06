@@ -8,4 +8,6 @@ public interface CartOperationsDao {
 
 	public boolean addToCart(CartBean bean);
 	public List<CartBean> retrieveCart(String sessionId);
+	
+	public boolean deleteCart(String sessionId);
 }

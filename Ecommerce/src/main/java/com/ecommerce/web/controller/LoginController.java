@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ecommerce.common.JsonHelper;
+import com.ecommerce.dao.CartOperationsDao;
 import com.ecommerce.dao.RegistrationDao;
 import com.ecommerce.dao.security.UserOperationsDao;
 import com.ecommerce.log.EcommerceLogger;
@@ -41,6 +42,10 @@ public class LoginController {
 	private RegistrationDao registrationDao;
 	@Autowired
 	private UserOperationsDao userOperationsDao;
+	
+	@Autowired
+	private CartOperationsDao cartOperationsDao;
+	
 
 	/**
 	 * This Method is the starting point of webapp
@@ -130,12 +135,17 @@ public class LoginController {
 		   return view;
 		 } */ 
 	@RequestMapping(value = "/logout**", method = RequestMethod.GET)
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response){
-		   ModelAndView view = new ModelAndView();
-		   request.getSession().invalidate();
-		   view.setViewName("hello");
-		   return view;
-		 }   
+	public ModelAndView handleRequest(HttpServletRequest request,
+			HttpServletResponse response) {
+		ModelAndView view = new ModelAndView();
+
+		CartOperationsDao cartOperationsDao = appContext.getBean(
+				"cartOperationsDao", CartOperationsDao.class);
+		cartOperationsDao.deleteCart(request.getSession().getId());
+		request.getSession().invalidate();
+		view.setViewName("hello");
+		return view;
+	}   
 
 	/**
 	 * This Method is responsible for handling the register page navigation

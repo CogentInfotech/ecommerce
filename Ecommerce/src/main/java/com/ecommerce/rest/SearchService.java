@@ -33,7 +33,11 @@ public class SearchService {
 	    private HttpServletRequest request;
 	 
 	 
-	 
+	 /***
+	  * This method is used for data insertion into productdetails table.
+	  * @param msg
+  	  * @return
+	 */ 
 	@GET
 	@Path("/{param}")
 	public Response storeProducts(@PathParam("param") String msg) {
@@ -82,6 +86,8 @@ public class SearchService {
  
 	}
 	
+	
+	
 	@GET
 	@Path("/{param}{param}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -93,38 +99,7 @@ public class SearchService {
 		 try{
 			 
 			productDao = ApplicationContextHolder.getContext().getBean("productDao",ProductDao.class);
-			listOfProducts = productDao.findAllProducts(msg);
-			
-			
-			/*
-			ProductBean productBean = new ProductBean();
-			productBean.setProductColor("black");
-			productBean.setProductDescription("Kenmore 50 cu ft washer");
-			productBean.setProductId("ECOM_KEN_50_Washer");
-			productBean.setProductImage("../img/washer50.png");
-			productBean.setProductType("Washer");
-
-			productDao.addCustomer(productBean);	
-			
-			
-			  
-			productBean = new ProductBean();
-			productBean.setProductColor( "black");
-			productBean.setProductDescription( "Kmart 50 cu ft Dryer" );
-			productBean.setProductId( "ECOM_KMR_100_Dryer" );
-	    	productBean.setProductImage( "../img/dryer.png" );
-	    	productBean.setProductType( "Dryer" );
-	    	  
-	    	productDao.addCustomer(productBean);
-	  		  
-	    	productBean = new ProductBean();
-	    	productBean.setProductColor( "Red");
-	    	productBean.setProductDescription( "Kmart 50 cu ft Dryer" );
-	    	productBean.setProductId( "ECOM_KMR_100_Dryer" );
-	    	productBean.setProductImage( "../img/dryer.png" );
-	    	productBean.setProductType( "Dryer" );
-	    	  
-	    	productDao.addCustomer(productBean);*/
+			listOfProducts = productDao.findAllProducts(msg);			
 			request.getSession().setAttribute(request.getSession( true).getId(), listOfProducts); 
 	  		
 	      }catch(Exception ex){

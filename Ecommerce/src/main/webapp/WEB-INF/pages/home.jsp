@@ -59,9 +59,11 @@
 	  
 	 $("#showTab").on('click', '#submitAddtoCart', function(e) {
 			 
-		
-				
-				var prodId = $(this).siblings('input[name="hiddenProd"]').val(); /*$(this).closest('.prod').find('#hiddenProd',this).val(); */
+		/* alert( $(this).prev('input[id="hiddenProd"]').val());
+	 	alert( $(this).closest("td").find('input[name="hiddenProd"]').val()	);
+		alert( $(this).closest("td").find('.innerTd #hiddenProd').val()	);
+		alert( $(this).find('.innerTd #hiddenProd').val());*/
+				var prodId = $(this).prev('input[id="hiddenProd"]').val(); /*$(this).siblings('input[name="hiddenProd"]').val(); /*$(this).closest('.prod').find('#hiddenProd',this).val(); */
 			     $.ajax({
 				        url :"/Ecommerce/rest/doAddtoCart/"+prodId,
 				        type: "GET",
@@ -112,14 +114,15 @@
 		        	        /*alert(data1[i].productColor);*/
 		        	       $("#showTab").append('<td class ="prod" WIDTH="20%">');
 		        	       $("#showTab").append('<IMG SRC="'+imgPath+'" WIDTH="109" HEIGHT="109" ALT=" ">');
-		        	       $("#showTab").append('<input type="hidden" name="hiddenProd" id="hiddenProd" value="'+data1[i].productId+'">');
+		        	      
 		        	       $("#showTab").append('<B>');
 		        	       $("#showTab").append('<I>');
 		        	      
 		        	        	// $("#showTab").append(data1[i].productType);
 		        	        	 
 		        	        $("#showTab").append('</I>');
-		        	        $("#showTab").append('<td>');
+		        	        $("#showTab").append('<td class="innerTd">');
+		        	        $("#showTab").append('<input type="hidden" name="hiddenProd" id="hiddenProd" value="'+data1[i].productId+'">');
 		        	        $("#showTab").append('<input type="button" name = "submitAddtoCart" id ="submitAddtoCart" value="Add to Cart"/>');
 		        	        $("#showTab").append('</td>');
 		        	        $("#showTab").append('</B>');

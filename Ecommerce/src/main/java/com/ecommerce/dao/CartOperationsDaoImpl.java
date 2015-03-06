@@ -37,10 +37,23 @@ public class CartOperationsDaoImpl extends HibernateDaoSupport implements CartOp
 	@Override
 	public List<CartBean> retrieveCart(String sessionId) {
 		// TODO Auto-generated method stub
-		String ps = "FROM CartBean where productId =:p1";
+		String ps = "FROM CartBean where cartId =:p1";
 		Query query = getSessionFactory().openSession().createQuery(ps);
 	 	query.setParameter("p1", sessionId);
 		return (List<CartBean>) query.list();
+	}
+
+
+	@Override
+	public boolean deleteCart(String sessionId) {
+		// TODO Auto-generated method stub
+		Query query = getSessionFactory().openSession().createQuery("delete CartBean where cartId = :p1");
+		query.setParameter("p1",  sessionId );
+		int result = query.executeUpdate();
+		if(result>0){
+			return true;
+		}
+		return false;
 	}
 	
 
