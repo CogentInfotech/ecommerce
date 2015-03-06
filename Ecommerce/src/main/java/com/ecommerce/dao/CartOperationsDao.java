@@ -10,4 +10,5 @@ public interface CartOperationsDao {
 	public List<CartBean> retrieveCart(String sessionId);
 	
 	public boolean deleteCart(String sessionId);
+	public boolean removeFromCart(String productId);
 }

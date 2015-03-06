@@ -28,9 +28,6 @@ public class CartService {
 	@Autowired
 	private ApplicationContext appContext;
 
-	 
-	
-	 
 	@Autowired
 	private CartOperationsDao cartOperationsDao;
 	/*
@@ -49,9 +46,10 @@ public class CartService {
 		String output = "Jersey say : " + msg;
 		JsonHelper jsonHelper = new JsonHelper();
 		CartBean cBean = new CartBean();
-		CartOperationsDao cartOperationsDao =ApplicationContextHolder.getContext().getBean(
-				CartOperationsDao.class);
-				 
+		
+		CartOperationsDao cartOperationsDao = ApplicationContextHolder
+				.getContext().getBean(CartOperationsDao.class);
+
 		try {
 			if (null == request.getSession().getAttribute(
 					request.getSession().getId() + "Cart")) {
@@ -69,17 +67,23 @@ public class CartService {
 			for (ProductBean bean : listOfProducts) {
 				if (msg.equalsIgnoreCase(bean.getProductId())) {
 					shoppingCart.getListOfProductBeans().add(bean);
-					
-					cBean.setProductId( bean.getProductId());
+
+					cBean.setProductId(bean.getProductId());
 					cBean.setCartId(request.getSession().getId());
-					cBean.setProductPrice(bean.getProductPrice() );
-					cartOperationsDao.addToCart( cBean );
+					cBean.setProductPrice(bean.getProductPrice());
+					cartOperationsDao.addToCart(cBean);
 					request.getSession()
 							.setAttribute(
 									request.getSession().getId() + "Cart",
 									shoppingCart);
-					return Response.ok(jsonHelper.getAddtoCartOperationsArray(true,shoppingCart.getListOfProductBeans().size()).toString(), MediaType.APPLICATION_JSON)
-							.build();
+					return Response.ok(
+							jsonHelper
+									.getAddtoCartOperationsArray(
+											true,
+											shoppingCart
+													.getListOfProductBeans()
+													.size()).toString(),
+							MediaType.APPLICATION_JSON).build();
 				}
 
 			}
@@ -89,8 +93,9 @@ public class CartService {
 		}
 
 		return Response.ok(
-				jsonHelper.getAddtoCartOperationsArray(false,0).toString(),
+				jsonHelper.getAddtoCartOperationsArray(false, 0).toString(),
 				MediaType.APPLICATION_JSON).build();
 
 	}
+
 }

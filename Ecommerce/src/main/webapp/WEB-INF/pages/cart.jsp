@@ -26,9 +26,30 @@
 <script type="text/javascript">
 	$(function() {
 		
-		 $( ".btn" ).on( "click", function(e) {
-			 
-		 });
+		 $("#showTab").on('click', '.btn', function(e) {
+		 alert('hi');
+		 
+			
+	      var prodId = $(this).prev('input[id="hiddenProd"]').val(); 
+					$.ajax({
+						url : "/Ecommerce/rest/removeFormCart/" + prodId,
+						type : "GET",
+						beforeSend : function(xhr) {
+							xhr.setRequestHeader('X-CSRF-Token',
+									$('#csrfToken').val());
+						},
+						success : function(data1) {
+							$('#cartMsg').text("");
+							$('#cartMsg').append(
+									'<B>Successfully Removed from cart.</B>');
+
+						},
+						error : function(jqXHR, textStatus, errorThrown) {
+							alert('Error');
+						}
+					});
+
+				});
 	});
 </script>
 
