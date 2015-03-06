@@ -25,7 +25,10 @@
 </script>
 <script type="text/javascript">
 	$(function() {
-
+		
+		 $( ".btn" ).on( "click", function(e) {
+			 
+		 });
 	});
 </script>
 
@@ -38,11 +41,15 @@ margin
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -54,11 +61,15 @@ padding
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -306,31 +317,31 @@ aside {
 }
 
 .btn {
-  background: #41dbdb;
-  background-image: -webkit-linear-gradient(top, #41dbdb, #2980b9);
-  background-image: -moz-linear-gradient(top, #41dbdb, #2980b9);
-  background-image: -ms-linear-gradient(top, #41dbdb, #2980b9);
-  background-image: -o-linear-gradient(top, #41dbdb, #2980b9);
-  background-image: linear-gradient(to bottom, #41dbdb, #2980b9);
-  -webkit-border-radius: 31;
-  -moz-border-radius: 31;
-  border-radius: 31px;
-  text-shadow: 1px 1px 3px #3cf0ab;
-  font-family: Arial;
-  color: #f0dff0;
-  font-size: 20px;
-  padding: 6px 13px 6px 13px;
-  text-decoration: none;
+	background: #41dbdb;
+	background-image: -webkit-linear-gradient(top, #41dbdb, #2980b9);
+	background-image: -moz-linear-gradient(top, #41dbdb, #2980b9);
+	background-image: -ms-linear-gradient(top, #41dbdb, #2980b9);
+	background-image: -o-linear-gradient(top, #41dbdb, #2980b9);
+	background-image: linear-gradient(to bottom, #41dbdb, #2980b9);
+	-webkit-border-radius: 31;
+	-moz-border-radius: 31;
+	border-radius: 31px;
+	text-shadow: 1px 1px 3px #3cf0ab;
+	font-family: Arial;
+	color: #f0dff0;
+	font-size: 20px;
+	padding: 6px 13px 6px 13px;
+	text-decoration: none;
 }
 
 .btn:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-  text-decoration: none;
+	background: #3cb0fd;
+	background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+	background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+	background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+	background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+	background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+	text-decoration: none;
 }
 </style>
 
@@ -379,24 +390,24 @@ aside {
 										<table cellspacing="1">
 											<tr>
 												<td>Products</td>
-                   								 <td> Price</td>
-												  <td></td>
+												<td>Price</td>
+												<td></td>
 											</tr>
 											<c:forEach var="productBean" items="${cartProducts}"
 												varStatus="myIndex">
 												<tr>
 													<td><b>${productBean.productId}</b> <input
-														type="hidden" name="hiddenProd" id="hiddenProd" value="${productBean.productId}">
-													</td>
+														type="hidden" name="hiddenProd" id="hiddenProd"
+														value="${productBean.productId}"></td>
 													<td>&nbsp;&pound;<b> ${productBean.productPrice}</b></td>
-													<td><input type="button" class="btn" value="remove"></td>  
+													<td><input type="button" class="btn" value="remove"></td>
 												</tr>
 
 											</c:forEach>
 											<tr>
-											<td> Cart Total</td>
-											<td><b>&pound;${cartTotal}</b></td>
-											<td>  </td>
+												<td>Cart Total</td>
+												<td><b>&pound;${cartTotal}</b></td>
+												<td></td>
 											</tr>
 										</table>
 									</div>
