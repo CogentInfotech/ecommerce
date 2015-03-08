@@ -42,6 +42,7 @@
 							$('#cartMsg').text("");
 							$('#cartMsg').append(
 									'<B>Successfully Removed from cart.</B>');
+							$( this).parent().remove();
 
 						},
 						error : function(jqXHR, textStatus, errorThrown) {
@@ -394,7 +395,7 @@ aside {
 				<div id="flowMain">
 					<header>
 						<div class="showWelcome">
-							<h2>Hello, Welcome to Ecommerce POC</h2>
+							<h2>Shopping Cart</h2>
 							<c:set var="req" value="${pageContext.request}" />
 							<c:set var="baseURL"
 								value="${fn:replace(req.requestURL, fn:substring(req.requestURI, 1, fn:length(req.requestURI)), req.contextPath)}" />
@@ -416,12 +417,13 @@ aside {
 											</tr>
 											<c:forEach var="productBean" items="${cartProducts}"
 												varStatus="myIndex">
-												<tr>
-													<td><b>${productBean.productId}</b> <input
-														type="hidden" name="hiddenProd" id="hiddenProd"
-														value="${productBean.productId}"></td>
+												<tr id="${productBean.productId}">
+													<td><b>${productBean.productId}</b> </td>
 													<td>&nbsp;&pound;<b> ${productBean.productPrice}</b></td>
-													<td><input type="button" class="btn" value="remove"></td>
+													<td>
+													<input type="hidden" name="hiddenProd" id="hiddenProd"
+														value="${productBean.productId}">
+													<input type="button" class="btn" value="remove"></td>
 												</tr>
 
 											</c:forEach>
