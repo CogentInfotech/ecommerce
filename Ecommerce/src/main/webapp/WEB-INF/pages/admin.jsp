@@ -45,13 +45,17 @@
 					        success:function(data1){
 					        	 
 					        	$('#mydata #meessage').text("Successfully enabled the access of "+userId);
-					        	//$(this).parent().closest( 'td' ).find('.changeRoleStatus').text("ROLE_USER"); 
 					        	 
+					        	/* setTimeout(
+										  function() 
+										  {
+											  document.getElementById("adminForm").submit();
+										  }, 2000);*/
 					        },
 					        error: function(jqXHR, textStatus, errorThrown){
 					        	 
 					        	$('#mydata #meessage').text("We are facing technical difficulties while updating the role  of "+userId);
-					        //	$(this).parent().closest( 'td' ).find('.changeRoleStatus').text("ROLE_USER"); 
+					        
 					        }
 					    }); 
 	  }); 
@@ -73,17 +77,17 @@
 					           
 					        success:function(data1){
 					        	
-					        	/*alert( $(this).parent().find('.changeRoleStatus').text() );
-					        	alert( $(this).closest('td').find('.changeRoleStatus').text() );
-					        	alert( $(this).parent().closest( 'b' ).find('.changeRoleStatus').text() );*/
+					         
 					        	 $('#mydata #meessage').text("Successfully disabled the access of "+userId);
-					        	// $(this).parent().closest( 'td' ).find('.changeRoleStatus').text("ROLE_NULL");  
+					        /*	 setTimeout(
+										  function() 
+										  {
+											  document.getElementById("adminForm").submit();
+										  }, 2000);*/
+					        	
 					        },
 					        error: function(jqXHR, textStatus, errorThrown){
 					        	 
-					        	/*alert( $(this).parent().find('.changeRoleStatus').text() );
-					        	alert( $(this).closest('td').find('.changeRoleStatus').text() );
-					        	alert( $(this).parent().closest( 'b' ).find('.changeRoleStatus').text() );*/
 					        	$('#mydata #meessage').text("We are facing technical difficulties while updating the role  of "+userId);
 					        }
 					    }); 
@@ -382,6 +386,10 @@ aside {
 	border-width: 0px 0px 1px 1px;
 }
 </style>
+<form action="/Ecommerce/admin" method="post" id="adminForm">
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+	</form>
 <body bgcolor="#E6E6FA">
 	<header>
 		<h1></h1>

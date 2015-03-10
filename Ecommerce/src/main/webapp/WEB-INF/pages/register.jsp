@@ -10,7 +10,7 @@
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sign Up Form</title>
+        <title>Ecommerce POC Sign Up Form</title>
         <link rel="stylesheet" href="css/normalize.css">
         <link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/main.css">
@@ -140,7 +140,9 @@ label.light {
  $("#customerEmail").attr('required', 'required'); 
  $("#customerPassword").attr('required', 'required'); 
  $("#customerAge").attr('required', 'required');  
- 
+ $("#customerJob").attr('required', 'required');  
+ $("#customerDescription").attr('required', 'required');  
+ $("#customerInterests").attr('required', 'required'); 
  </script>
  <form:form action="/Ecommerce/register_new" autocomplete="off" id="form" onsubmit="return validateForm()" modelAttribute="userDetailsBean" method="GET">
    

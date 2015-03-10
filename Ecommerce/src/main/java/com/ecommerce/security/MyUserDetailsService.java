@@ -47,6 +47,9 @@ public class MyUserDetailsService extends HibernateDaoSupport implements
 				Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 				
 				bean = (RegistrationBean) l2.get(0); 
+				if(bean.getRoleuser().equalsIgnoreCase("ROLE_NULL")){
+					return null;
+				}
 				
 				authorities.add(new GrantedAuthorityImpl(bean.getRoleuser())); // adding user role ROLE_USER
 				

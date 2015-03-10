@@ -128,12 +128,7 @@ public class LoginController {
 		 
 	}
 	
-	/*@RequestMapping(value = "/enableUser", method = RequestMethod.GET)
-	public ModelAndView enableUser(String userName ){
-		   ModelAndView view = new ModelAndView();
-		  
-		   return view;
-		 } */ 
+ 
 	@RequestMapping(value = "/logout**", method = RequestMethod.GET)
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) {
@@ -186,6 +181,7 @@ public class LoginController {
 	    	  RegistrationBean bean = new RegistrationBean();
 	    	  bean.setCustomerName(userDetailsBean.getCustomerName() );
 	    	  bean.setCustomerAge(userDetailsBean.getCustomerAge());
+	    	  bean.setCustomerEmail( userDetailsBean.getCustomerEmail());
 	    	  bean.setCustomerInterests(userDetailsBean.getCustomerInterests());
 	    	  bean.setCustomerPassword(userDetailsBean.getCustomerPassword());
 	    	  bean.setCustomerDescription(userDetailsBean.getCustomerDescription());

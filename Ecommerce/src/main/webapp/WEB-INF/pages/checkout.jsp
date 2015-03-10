@@ -10,23 +10,19 @@
 
 <html>
 <head>
-<title>Ecommerce POC Cart</title>
+<title>Ecommerce POC Checkout</title>
 </head>
 </head>
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
 <form action="${logoutUrl}" method="post" id="logoutForm">
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />
-	</form>
-	<form action="/Ecommerce/cart" method="post" id="cartForm">
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />
-	</form>
-	<form action="/Ecommerce/checkout" method="post" id="checkoutForm">
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />
-	</form>
-
+	<input type="hidden" name="${_csrf.parameterName}"
+		value="${_csrf.token}" />
+</form>
+<script>
+	function formSubmit() {
+		document.getElementById("logoutForm").submit();
+	}
+</script>
 <script type="text/javascript">
 	$(function() {
 		
@@ -62,9 +58,6 @@
 				});
 		 function gotoCart() {
 				document.getElementById("cartForm").submit();
-			}
-			function gotoCheckout() {
-				document.getElementById("checkoutForm").submit();
 			}
 	});
 </script>
@@ -381,19 +374,13 @@ aside {
 	text-decoration: none;
 }
 </style>
-<script>
-function formSubmit() {
-	document.getElementById("logoutForm").submit();
-}
-function gotoCart() {
-	document.getElementById("cartForm").submit();
-}
-function gotoCheckout() {
-	document.getElementById("checkoutForm").submit();
-}
-	</script>
+
 
 <body bgcolor="#E6E6FA">
+	<form action="/Ecommerce/checkout" method="post" id="checkoutForm">
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+	</form>
 	<header>
 		<h1></h1>
 	</header>
@@ -407,8 +394,8 @@ function gotoCheckout() {
 			<ul>
 				<li><a href="#" data-ajax="false" id="search" tabindex="3"
 					style="float: left">Search</a></li>
-				<li><a href="#">Cart</a></li>
-				<li><a href="javascript:gotoCheckout()" id="checkout">Checkout</a></li>
+				<li><a href="javascript:gotoCart()">Cart</a></li>
+				<li><a href="#">Checkout</a></li>
 				
 				<li><a href="javascript:formSubmit()" id="logout">Logout</a></li>
 			</ul>
@@ -420,7 +407,7 @@ function gotoCheckout() {
 				<div id="flowMain">
 					<header>
 						<div class="showWelcome">
-							<h2>Shopping Cart</h2>
+							<h2>Checkout</h2>
 							<c:set var="req" value="${pageContext.request}" />
 							<c:set var="baseURL"
 								value="${fn:replace(req.requestURL, fn:substring(req.requestURI, 1, fn:length(req.requestURI)), req.contextPath)}" />
@@ -434,6 +421,29 @@ function gotoCheckout() {
 
 
 									<div class="CSSTableGenerator">
+										<table cellspacing="1">
+											<tr>
+												<td>Customer Name</td>
+												<td>Email ID</td>
+												<td>Cart ID</td>
+												<td>Total Price</td>
+												 
+											</tr>
+											 
+												<tr >
+													<td> <b>${customerName}</b> </td>
+													<td> <b>${customerEmail}</b> </td>
+													<td><b>${cartId}</b> </td>
+													<td>&nbsp;&pound; &nbsp;<b>${cartTotal}</b> </td>
+													
+													 
+												</tr>
+
+											 
+											
+										</table>
+									</div>
+			<div class="CSSTableGenerator">
 										<table cellspacing="1">
 											<tr>
 												<td>Products</td>
@@ -452,14 +462,9 @@ function gotoCheckout() {
 												</tr>
 
 											</c:forEach>
-											<tr>
-												<td>Cart Total</td>
-												<td><b>&pound;${cartTotal}</b></td>
-												<td></td>
-											</tr>
+											 
 										</table>
 									</div>
-
 								</div>
 							</CENTER>
 						</div>
