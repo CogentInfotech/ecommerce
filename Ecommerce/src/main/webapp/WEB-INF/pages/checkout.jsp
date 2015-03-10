@@ -46,7 +46,7 @@
 							setTimeout(
 									  function() 
 									  {
-										  document.getElementById("cartForm").submit();
+										  document.getElementById("checkoutForm").submit();
 									  }, 2000);
 
 						},
