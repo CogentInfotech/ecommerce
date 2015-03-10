@@ -15,19 +15,23 @@
 </head>
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
 <form action="${logoutUrl}" method="post" id="logoutForm">
-	<input type="hidden" name="${_csrf.parameterName}"
-		value="${_csrf.token}" />
-</form>
-<script>
-	function formSubmit() {
-		document.getElementById("logoutForm").submit();
-	}
-</script>
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+	</form>
+	<form action="/Ecommerce/cart" method="post" id="cartForm">
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+	</form>
+	<form action="/Ecommerce/checkout" method="post" id="checkoutForm">
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+	</form>
+
 <script type="text/javascript">
 	$(function() {
 		
 		 $("#showTab").on('click', '.btn', function(e) {
-		 alert('hi');
+		 //alert('hi');
 		 
 			
 	      var prodId = $(this).prev('input[id="hiddenProd"]').val(); 
@@ -42,7 +46,7 @@
 							$('#cartMsg').text("");
 							$('#cartMsg').append(
 									'<B>Successfully Removed from cart.</B>');
-							$( this).parent().remove();
+							$( this).parent().parent().remove();
 
 						},
 						error : function(jqXHR, textStatus, errorThrown) {
@@ -51,6 +55,12 @@
 					});
 
 				});
+		 function gotoCart() {
+				document.getElementById("cartForm").submit();
+			}
+			function gotoCheckout() {
+				document.getElementById("checkoutForm").submit();
+			}
 	});
 </script>
 
@@ -366,7 +376,17 @@ aside {
 	text-decoration: none;
 }
 </style>
-
+<script>
+function formSubmit() {
+	document.getElementById("logoutForm").submit();
+}
+function gotoCart() {
+	document.getElementById("cartForm").submit();
+}
+function gotoCheckout() {
+	document.getElementById("checkoutForm").submit();
+}
+	</script>
 
 <body bgcolor="#E6E6FA">
 	<header>
@@ -383,8 +403,8 @@ aside {
 				<li><a href="#" data-ajax="false" id="search" tabindex="3"
 					style="float: left">Search</a></li>
 				<li><a href="#">Cart</a></li>
-				<li><a href="#">Checkout</a></li>
-				<li><a href="#">Receipt</a></li>
+				<li><a href="javascript:gotoCheckout()" id="checkout">Checkout</a></li>
+				
 				<li><a href="javascript:formSubmit()" id="logout">Logout</a></li>
 			</ul>
 		</nav>

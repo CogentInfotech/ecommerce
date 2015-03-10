@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import com.ecommerce.persistence.CartBean;
 import com.ecommerce.persistence.RegistrationBean;
  
 
@@ -39,6 +40,17 @@ public class RegistrationDaoImpl extends  HibernateDaoSupport implements Registr
 		// TODO Auto-generated method stub
 		String ps = "FROM RegistrationBean";
 		Query query = getSessionFactory().openSession().createQuery(ps);
+		return (List<RegistrationBean>) query.list();
+	}
+
+
+	@Override
+	public List<RegistrationBean> findSpecificCustomerData(String customerID) {
+		// TODO Auto-generated method stub
+		String ps = "FROM RegistrationBean where customerName =:p1";
+		Query query = getSessionFactory().openSession().createQuery(ps);
+		query.setParameter("p1", customerID);
+	 
 		return (List<RegistrationBean>) query.list();
 	}
 

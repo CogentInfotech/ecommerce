@@ -398,7 +398,7 @@ aside {
 					style="float: left">Search</a></li>
 				<li><a href="#">Cart</a></li>
 				<li><a href="#">Checkout</a></li>
-				<li><a href="#">Receipt</a></li>
+				
 				<li><a href="javascript:formSubmit()" id="logout">Logout</a></li>
 			</ul>
 		</nav>

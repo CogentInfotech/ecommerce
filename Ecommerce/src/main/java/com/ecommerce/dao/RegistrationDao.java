@@ -9,4 +9,6 @@ public interface RegistrationDao {
 	void addCustomer(RegistrationBean customer);
 	 
 	List<RegistrationBean> findAllCustomer();
+	
+	List<RegistrationBean> findSpecificCustomerData(String customerID);
 }

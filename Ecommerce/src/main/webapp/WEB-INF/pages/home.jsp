@@ -24,6 +24,9 @@
 		function gotoCart() {
 			document.getElementById("cartForm").submit();
 		}
+	  function gotoCheckout() {
+			document.getElementById("checkoutForm").submit();
+		}
 	</script>
   <script type="text/javascript">
   $(function(){
@@ -150,6 +153,9 @@
 		}
 	  function gotoCart() {
 			document.getElementById("cartForm").submit();
+		}
+	  function gotoCheckout() {
+			document.getElementById("checkoutForm").submit();
 		}
 	  
   });
@@ -286,6 +292,10 @@ nav ul li {
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
 	</form>
+	<form action="/Ecommerce/checkout" method="post" id="checkoutForm">
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+	</form>
 	
     <section id="intro">
     
@@ -293,8 +303,8 @@ nav ul li {
 			<ul>
 				<li><a href="#" data-ajax="false" id="search" tabindex="3" style="float: left">Search</a></li>
 				<li><a href="javascript:gotoCart()" id="cart">Cart</a></li>
-				<li><a href="#">Checkout</a></li>
-				<li><a href="#">Receipt</a></li>
+				<li><a href="javascript:gotoCheckout()" id="checkout">Checkout</a></li>
+				
 				<li><a href="javascript:formSubmit()" id="logout">Logout</a></li>
 			</ul>
 		</nav>
