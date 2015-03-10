@@ -42,7 +42,7 @@
 							$('#cartMsg').text("");
 							$('#cartMsg').append(
 									'<B>Successfully Removed from cart.</B>');
-							$( this).parent().parent().remove();
+							//$( this).parent().parent().remove();
 							setTimeout(
 									  function() 
 									  {
@@ -59,9 +59,19 @@
 		 function gotoCart() {
 				document.getElementById("cartForm").submit();
 			}
+		 function gotoHome() {
+				document.getElementById("homeForm").submit();
+			}
 	});
 </script>
-
+<script type="text/javascript">
+function gotoCart() {
+	document.getElementById("cartForm").submit();
+}
+function gotoHome() {
+	document.getElementById("homeForm").submit();
+}
+</script>
 <style>
 {
 margin
@@ -381,6 +391,14 @@ aside {
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
 	</form>
+	<form action="/Ecommerce/cart" method="post" id="cartForm">
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+	</form>
+	<form action="/Ecommerce/doSearch" method="get" id="homeForm">
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+	</form>
 	<header>
 		<h1></h1>
 	</header>
@@ -392,7 +410,7 @@ aside {
 
 		<nav>
 			<ul>
-				<li><a href="#" data-ajax="false" id="search" tabindex="3"
+				<li><a href="javascript:gotoHome()" data-ajax="false" id="search" tabindex="3"
 					style="float: left">Search</a></li>
 				<li><a href="javascript:gotoCart()">Cart</a></li>
 				<li><a href="#">Checkout</a></li>

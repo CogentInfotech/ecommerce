@@ -61,11 +61,12 @@ public class CartOperationsDaoImpl extends HibernateDaoSupport implements
 	 */
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public boolean removeFromCart(String productId) {
+	public boolean removeFromCart(String productId,String cartId) {
 		// TODO Auto-generated method stub
 		Query query = getSessionFactory().openSession().createQuery(
-				"delete from CartBean where productId = :p1");
+				"delete from CartBean where productId = :p1 and cartId = :p2");
 		query.setParameter("p1", productId);
+		query.setParameter("p2", cartId);
 		int result = query.executeUpdate();
 		if (result > 0) {
 			return true;

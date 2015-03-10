@@ -43,7 +43,7 @@ public class RemoveCartService {
 		CartBean cBean = new CartBean();
 		CartOperationsDao cartOperationsDao =ApplicationContextHolder.getContext().getBean(
 				CartOperationsDao.class);
-		cartOperationsDao.removeFromCart(removeFormCart);
+		cartOperationsDao.removeFromCart(removeFormCart,request.getSession().getId());
 		
 		return  Response.ok(jsonHelper.getSuccessJson().toString() ,MediaType.APPLICATION_JSON).build();
 		 
